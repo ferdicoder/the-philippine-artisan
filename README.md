@@ -9,7 +9,7 @@ The objective of this website is to provide another level of accessibility to Th
 - **Jhanleur Balberan** – Designer
 - **Nicholai Santos** – Content Writer
 ## Tools Used
-- HTML, CSS, JavaScript
+- HTML, CSS, JavaScript, PHP
 - Visual Studio Code
 - Git & GitHub
 - GitHub Pages
@@ -32,9 +32,14 @@ The objective of this website is to provide another level of accessibility to Th
 - Practiced responsive design and semantic HTML
 - Learned Fllex and Grid display propery in CSS
 - Applied DOM HTML generation for website interactivity
+
 ## Timeline
 | Phase | Task | Date |
+|----------|----------|----------|
 | Proposal | Planning & wireframe | Oct 14, 2025 |
-| Development | Coding & testing | Nov 20 TBA, 2025 |
-| Deployment | GitHub setup & launch | TBA 2025 |
-| Submission | Final documentation | TBA 2025
+| Development | Coding & testing | Nov 20, 2025 |
+| Deployment | GitHub setup & launch | December 12, 2025 |
+| Submission | Final documentation | December 2025 |
+
+
+
