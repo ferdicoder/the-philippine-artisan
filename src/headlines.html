@@ -1,176 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Latest Headlines from The Philippine Artisan">
-    <title>The Philippine Artisan - Headlines</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/styles/header.css">
+  <title>Headlines</title>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="assets/logo.png" alt="The Philippine Artisan Logo" class="logo-image">
-                <div class="logo-text">
-                    <div class="logo-subtitle">THE PHILIPPINE</div>
-                    <h1 class="logo-title">artisan</h1>
-                </div>
-            </div>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
-            </button>
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="headlines.html" class="nav-link active">Headlines</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="news.html" class="nav-link">News</a></li>
-                <li><a href="events.html" class="nav-link">Events</a></li>
-            </ul>
-        </div>
+  
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="/src/headlines.html">Headlines</a></li>
+        <li><a href="/src/events.html">Events</a></li>
+        <li><a href="#more">More</a></li>
+      </ul>
     </nav>
 
-    <!-- Headlines Banner -->
-    <section class="headlines-banner">
-        <div class="container">
-            <h2 class="headlines-banner-title">Headlines:</h2>
+      <div class="logo-title">
+        <img src="/assets/artisan-logo.jpg" alt="Artisan Logo" class="logo" />
+        <div class="title-text">
+          <p class="sub">THE PHILIPPINE</p>
+          <h1 class="main">Artisan</h1>
         </div>
-    </section>
+      </div>
+    
+    <div class="header-actions">
+      <button class="btn-outline">Sign Up</button>
+      <button class="btn-filled">Log In</button>
+    </div>
+  </header>
 
-    <!-- Headlines Content -->
-    <section class="headlines-articles">
-        <div class="container">
-            
-            <!-- Article 1: TUP Manila Civil Engineers -->
-            <article class="headline-article">
-                <div class="article-image">
-                    <img src="assets/icyivil.jpg" alt="ICYivil - Civil Engineering Licensure" class="article-img">
-                </div>
-                <div class="article-content">
-                    <h3 class="article-title">TUP Manila Celebrates Newly Licensed Civil Engineers</h3>
-                    <p class="article-date">November 29, 2025</p>
-                    <p class="article-description">
-                        TUP Manila recognizes the success of its 46 newly licensed civil engineers who passed the 
-                        November 2025 Civil Engineering Licensure Examination (CELE).
-                    </p>
-                    
-                    <div class="article-stats">
-                        <div class="stat-box">
-                            <div class="stat-number">47.42%</div>
-                            <div class="stat-label">TUP Passing Rate</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">30.39</div>
-                            <div class="stat-label">National Rate</div>
-                        </div>
-                    </div>
-                    
-                    <p class="article-highlight">46 out of 97 examinees succeeding</p>
-                    
-                    <blockquote class="article-quote">
-                        "Congratulations, TUPians! The entire community is proud of you all."
-                    </blockquote>
-                </div>
-            </article>
-
-            <!-- Article 2: ADFA Sportsfest -->
-            <article class="headline-article">
-                <div class="article-image">
-                    <img src="assets/sportsfest.jpg" alt="9th ADFA Sportsfest" class="article-img">
-                </div>
-                <div class="article-content">
-                    <h3 class="article-title">9th ADFA Sportsfest Concludes at TUP Covered Court</h3>
-                    <p class="article-date">November 25-27, 2025</p>
-                    <p class="article-description">
-                        The 9th Admin and Faculty (ADFA) Sportsfest took place at the TUP Covered Court from 
-                        November 25 to 27. Participants include Admin and faculty teams from all colleges, as well 
-                        as TUP branches in Cavite and Taguig.
-                    </p>
-                    
-                    <div class="article-theme">
-                        <strong>Theme:</strong> "One goal, one team towards a healthy community through sports"
-                    </div>
-                    
-                    <div class="article-results">
-                        <div class="result-item champion">
-                            🏆 <strong>Overall Champion:</strong> TUP Admin
-                        </div>
-                        <div class="result-item first">
-                            🥇 <strong>First Runner-up:</strong> Cavite
-                        </div>
-                        <div class="result-item second">
-                            🥈 <strong>Second Runner-up:</strong> Taguig
-                        </div>
-                    </div>
-                    
-                    <div class="article-highlights">
-                        <h4>Highlights:</h4>
-                        <ul>
-                            <li>Chess: CIT (Gold), COS (Silver), CIE (Bronze)</li>
-                            <li>Basketball: Admin (Gold), Taguig (Silver), CCE (Bronze)</li>
-                            <li>Volleyball: Taguig (Gold - Both), Cavite (Silver - Men's)</li>
-                            <li>Badminton: Admin (Gold - Men's), CLA (Gold - Women's)</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-background"></div>
-        <div class="footer-container">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="assets/logo.png" alt="The Philippine Artisan Logo" class="footer-logo-image">
-                    <div class="footer-logo-text">The Philippine Artisan Manila</div>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-title">About The Philippine Artisan</h4>
-                <p class="footer-description">
-                    The Official Student Publication of Technological University of the Philippines - Manila. 
-                    A member of the College Editors Guild of the Philippines (CEGP) and United League of 
-                    Artisans in TUP (ULAT).
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-title">Quick Link:</h4>
-                <div class="footer-links">
-                    <a href="https://www.facebook.com/PhilArtisanMNL" target="_blank" class="footer-link">
-                        <span class="icon">📘</span> Facebook
-                    </a>
-                    <a href="https://www.instagram.com/philartisanmnl" target="_blank" class="footer-link">
-                        <span class="icon">📷</span> Instagram
-                    </a>
-                    
-                </div>
-                
-                <div class="newsletter">
-                    <h4 class="newsletter-title">NEWS LETTER SIGN-UP</h4>
-                    <form class="newsletter-form" id="newsletterForm">
-                        <input type="email" placeholder="Enter Email" required class="newsletter-input">
-                        <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>artisan@tup.edu.ph | @PhilArtisanMNL | 5301-3001</p>
-            <p>&copy; 2024 The Philippine Artisan Manila. All rights reserved. | Turno ng Contra</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
