@@ -22,56 +22,6 @@ body {
   color: var(--dark);
 }
 
-/* HEADER (Copied design) */
-.header {
-  background: white;
-  padding: 1rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.nav ul { display: flex; gap: 2rem; list-style: none; }
-.nav a {
-  text-decoration: none;
-  color: var(--gray-600);
-  font-weight: 500;
-  position: relative;
-  padding-bottom: .4rem;
-}
-.nav a::after {
-  content:"";
-  width: 0; height: 2px;
-  background: var(--primary);
-  position: absolute;
-  bottom: 0; left: 0;
-  transition: .3s;
-}
-.nav a:hover::after { width: 100%; }
-
-.logo { width: 50px; }
-.title-text .sub { font-size: .6rem; letter-spacing: 3px; }
-.title-text .main {
-  font-size: 1.5rem;
-  font-family: "Playfair Display";
-}
-
-.btn-outline, .btn-filled {
-  padding: .6rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.btn-outline {
-  border: 1.5px solid var(--gray-300);
-  background: transparent;
-}
-.btn-filled {
-  background: var(--dark);
-  color: white;
-  border: none;
-}
-
 /* MAIN */
 .news-container {
   max-width: 900px;
