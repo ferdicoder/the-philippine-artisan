@@ -14,24 +14,28 @@ The objective of this website is to provide another level of accessibility to Th
 - Git & GitHub
 - GitHub Pages
 ## Site Structure
-- `html` – Homepage
-- `html` – Company profile
-- `html` – List of services
-- `html` – Contact form
+- `index.html` – Homepage
+- `about.html` – Company profile
+- `headlines` – contain headlines and brief news
+  - `news.html` – detailed information about the news
 - `assets/` – Images and icons
 ## Design Concept
-- **Color Scheme**: Green and white for eco-branding
-- **Typography**: Sans-serif fonts for readability
+- **Color Scheme**: Blue and White represents original color of The Philippine Artisan
+- **Typography**:
+  - Roboto - For standardized readability
+  - Pirata One - For title text
 - **Layout**: Consistent spacing, mobile-friendly grid
 ## Deployment
-- GitHub Repository: 
+- GitHub Repository: https://github.com/ferdicoder/the-philippine-artisan.git
 - Live Site: 
 ## Lessons Learned
 - Improved collaboration using Git
 - Learned how to deploy static sites via GitHub Pages
 - Practiced responsive design and semantic HTML
 - Learned Fllex and Grid display propery in CSS
+- Concept of at-rules in CSS and its usage
 - Applied DOM HTML generation for website interactivity
+- Used JavaScript built-in functions
 
 ## Timeline
 | Phase | Task | Date |
@@ -39,7 +43,7 @@ The objective of this website is to provide another level of accessibility to Th
 | Proposal | Planning & wireframe | Oct 14, 2025 |
 | Development | Coding & testing | Nov 20, 2025 |
 | Deployment | GitHub setup & launch | December 12, 2025 |
-| Submission | Final documentation | December 2025 |
+| Submission | Final documentation | December 19, 2025 |
 
 
 
