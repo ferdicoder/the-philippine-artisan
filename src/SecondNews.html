@@ -30,9 +30,10 @@
   </div>
 
   <div class="header-actions">
-    <button class="btn-outline">Sign In</button>
-    <button class="btn-filled">Subscribe</button>
+    <button class="btn-outline" onclick="window.location.href='SignUp.html'">Sign Up</button>
+    <button class="btn-filled">Log In</button>
   </div>
+
 </header>
 
 <!-- NEWS CONTENT -->
@@ -101,25 +102,48 @@
 
   <!-- Related News -->
   <section class="related-section">
-    <h2>Related Stories</h2>
+  <h2>Related Stories</h2>
 
-    <div class="related-grid">
-      <div class="related-card">
-        <img src="thumb1.png" alt="">
-        <p>LOOK: 9TH ADFA Sportsfest concludes at TUP Covered Court</p>
-      </div>
+  <div class="related-row">
 
-      <div class="related-card">
-        <img src="thumb2.png" alt="">
-        <p>ANNOUNCEMENT: Civilian attire and academic adjustments scheduled for Campus Youth Day</p>
+    <a href="../src/FourthNews.html" class="related-item">
+      <div class="related-inner">
+        <img src="../assets/news-4.jpg" alt="">
+        <div class="related-info">
+          <p class="related-date">November 29, 2025 • 5:00 PM</p>
+          <h3 class="related-title">
+            LOOK: 9TH ADFA Sportsfest concludes at TUP Covered Court
+          </h3>
+        </div>
       </div>
+    </a>
 
-      <div class="related-card">
-        <img src="thumb3.png" alt="">
-        <p>ICYM: TUP MANILA celebrates newly licensed civil engineers</p>
+    <a href="../src/SecondNews.html" class="related-item">
+      <div class="related-inner">
+        <img src="../assets/news-1.jpg" alt="">
+        <div class="related-info">
+          <p class="related-date">November 29, 2025 • 10:00 AM</p>
+          <h3 class="related-title">
+            ICYMI: TUP Manila celebrates newly licensed civil engineers
+          </h3>
+        </div>
       </div>
-    </div>
-  </section>
+    </a>
+
+    <a href="../src/ThirdNews.html" class="related-item">
+        <div class="related-inner">
+          <img src="../assets/news-3.jpg" alt="">
+          <div class="related-info">
+            <p class="related-date">November 25, 2025 • 11:48 AM</p>
+            <h3 class="related-title">
+              ANNOUNCEMENT: Civilian attire & academic adjustments for Campus Youth Day
+            </h3>
+          </div>
+        </div>
+      </a>
+
+  </div>
+</section>
 
 </main>
 
@@ -129,9 +153,9 @@
     <img src="../assets/artisan-logo.png" class="footer-logo">
     <h1 class="footer-title">The Philippine Artisan Manila</h1>
     <div class="social-links">
-      <a href="#"><img src="https://clipartcraft.com/images/facebook-logo-png-format.png"></a>
-      <a href="#"><img src="https://th.bing.com/th/id/R.40bb652bbe5b6576c45018c12dfcb387?rik=lUA%2f5q49pUndNg&riu=http%3a%2f%2fsno.bsmu.by%2fimages%2finstagram-icon.png&ehk=uJnXKh72fkgDKVWW%2bB17gsFnmCKo%2b8%2fJBajQmttRAPA%3d&risl=&pid=ImgRaw&r=0"></a>
-      <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/045/872/295/large_2x/youtube-transparent-logo-youtube-logo-transparent-background-free-png.png"></a>
+      <a href="https://www.facebook.com/PhilArtisanMNL/"><img src="https://clipartcraft.com/images/facebook-logo-png-format.png"></a>
+      <a href="https://www.instagram.com/philartisanmnl/"><img src="https://th.bing.com/th/id/R.40bb652bbe5b6576c45018c12dfcb387?rik=lUA%2f5q49pUndNg&riu=http%3a%2f%2fsno.bsmu.by%2fimages%2finstagram-icon.png&ehk=uJnXKh72fkgDKVWW%2bB17gsFnmCKo%2b8%2fJBajQmttRAPA%3d&risl=&pid=ImgRaw&r=0"></a>
+      <a href="https://www.youtube.com/@tek_artisanmnl"><img src="https://static.vecteezy.com/system/resources/previews/045/872/295/large_2x/youtube-transparent-logo-youtube-logo-transparent-background-free-png.png"></a>
    
     </div>
   </div>
@@ -147,9 +171,9 @@
     <section>
       <h3>Quick Links</h3>
       <ul class="links">
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">YouTube</a></li>
+        <li><a href="https://www.facebook.com/PhilArtisanMNL/">Facebook</a></li>
+        <li><a href="https://www.instagram.com/philartisanmnl/">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@tek_artisanmnl">YouTube</a></li>
       </ul>
     </section>
 
@@ -163,5 +187,6 @@
   </div>
 </footer>
 
+<script src="../src/scripts/AlertSubscription.js"></script>
 </body>
 </html>

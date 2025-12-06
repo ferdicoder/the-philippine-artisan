@@ -27,9 +27,11 @@
         </div>
       </div>
     
-    <div class="header-actions">
-      <button class="btn-outline">Sign Up</button>
-      <button class="btn-filled">Log In</button>
+  <div class="header-actions">
+    <button class="btn-outline" onclick="window.location.href='SignUp.html'">Sign Up</button>
+    <button class="btn-filled">Log In</button>
+  </div>
+
     </div>
   </header>
 
@@ -90,6 +92,16 @@
       </ul>
     </section>
 
+      <section class="newsletter">
+        <h3>Newsletter Sign-Up</h3>
+        <form>
+          <input type="email" placeholder="Enter Email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </div>
+  </footer>
+<script src="../src/nav-links.js"></script>
     <section class="newsletter">
       <h3>Newsletter Sign-Up</h3>
       <form>
@@ -99,5 +111,7 @@
     </section>
   </div>
 </footer>
+
+<script src="../src/scripts/AlertSubscription.js"></script>
 </body>
 </html>

@@ -1,19 +1,14 @@
+/* Sign Up Page CSS */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Pirata+One:wght@400&display=swap');
 
 :root {
-  --primary: #243978; 
-  --primary-semi: #2563eb;
+  --primary: #243978;
   --primary-light: #3b82f6;
   --dark: #0f172a;
-  --dark-secondary: #1e293b;
   --light: #ffffff;
   --gray-50: #f8fafc;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
   --gray-600: #475569;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
@@ -28,7 +23,6 @@ body {
   background: var(--gray-50);
   color: var(--dark);
   line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
 }
 
 /* Header */
@@ -41,8 +35,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 1px 2px 0 var(--dark); 
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .logo-title {
@@ -50,31 +43,27 @@ body {
   align-items: center;
   gap: 1rem;
 }
-.logo-title img {
-  border-radius: 100px;
-}
 
 .logo {
   width: 50px;
   height: 50px;
   object-fit: contain;
+  border-radius: 50%;
 }
 
 .title-text .sub {
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 3px;
   color: var(--light);
   text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 .title-text .main {
   font-family: 'Pirata One', Georgia, serif;
   font-size: 1.5rem;
-  font-weight: 300;
   color: var(--light);
   letter-spacing: 2px;
-  margin-top: -4px;
 }
 
 nav ul {
@@ -88,8 +77,8 @@ nav a {
   color: var(--light);
   font-weight: 500;
   font-size: 0.9rem;
-  transition: var(--transition);
   position: relative;
+  transition: var(--transition);
   padding: 0.5rem 0;
 }
 
@@ -122,8 +111,6 @@ nav a:hover::after {
   border: 1.5px solid var(--light);
   background: transparent;
   color: var(--light);
-  font-weight: 500;
-  font-size: 0.875rem;
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
@@ -136,11 +123,9 @@ nav a:hover::after {
 
 .btn-filled {
   padding: 0.6rem 1.25rem;
-  border: 1px solid var(--light); 
+  border: 1px solid var(--light);
   background: var(--light);
   color: var(--dark);
-  font-weight: 500;
-  font-size: 0.875rem;
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
@@ -148,6 +133,77 @@ nav a:hover::after {
 
 .btn-filled:hover {
   background: var(--primary);
-  border: 1px solid var(--light); 
-  color: var(--light); 
+  color: var(--light);
+}
+
+/* Sign Up Form Styles */
+.signup-wrapper {
+  max-width: 400px;
+  margin: 6rem auto;
+  padding: 2rem;
+  background: var(--light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.signup-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.signup-card .subtitle {
+  text-align: center;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-600);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary);
+  color: var(--light);
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-submit:hover {
+  background: var(--primary-light);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
 }
