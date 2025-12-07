@@ -27,7 +27,7 @@ The objective of this website is to provide another level of accessibility to Th
 - **Layout**: Consistent spacing, mobile-friendly grid
 ## Deployment
 - GitHub Repository: https://github.com/ferdicoder/the-philippine-artisan.git
-- Live Site: 
+- Live Site: https://ferdicoder.github.io/the-philippine-artisan/
 ## Lessons Learned
 - Improved collaboration using Git
 - Learned how to deploy static sites via GitHub Pages
