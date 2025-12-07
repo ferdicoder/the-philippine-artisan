@@ -127,6 +127,7 @@ nav a:hover::after {
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .btn-outline:hover {
@@ -144,6 +145,7 @@ nav a:hover::after {
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .btn-filled:hover {
