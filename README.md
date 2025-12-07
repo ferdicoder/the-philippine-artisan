@@ -5,7 +5,7 @@ The Philippine Artisan is a student organization in Technological University of 
 The objective of this website is to provide another level of accessibility to The Philippines Artisan and to centralized an information in web environment equal to the big news organization in the country.
 ## Team Members & Roles
 - **Ferdinand Cedrick B. Gelito** – Developer 
-- **Jewel Sarvide** – Project Manager
+- **Jewel Sarvida** – Project Manager
 - **Jhanleur Balberan** – Designer
 - **Nicholai Santos** – Content Writer
 ## Tools Used
