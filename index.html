@@ -164,14 +164,26 @@
 
     <section class="newsletter">
       <h3>Newsletter Sign-Up</h3>
-      <form>
-        <input type="email" placeholder="Enter Email" required>
-        <button type="submit">Subscribe</button>
+      <form action="src/php/email.php" method="post" id="newsletter-form">
+        <input type="email" placeholder="Enter Email" name="email" required>
+        <button type="submit" id="subscribe-btn">Subscribe</button>
       </form>
     </section>
   </div>
 </footer>
 
 <script src="nav-links.js"></script>
+<script>
+  // Prevent double form submission
+  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    const btn = document.getElementById('subscribe-btn');
+    if (btn.disabled) {
+      e.preventDefault();
+      return false;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+  });
+</script>
 </body>
 </html>
