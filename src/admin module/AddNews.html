@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>News Publisher — Simple Module</title>
+
+<!-- Link external CSS -->
+<link rel="stylesheet" href="../admin module/AddNews.css">
+
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <h1>News Publisher Module</h1>
+      <p class="muted">Create, preview, publish, edit & manage news articles (saved locally).</p>
+    </div>
+    <div class="controls">
+      <input id="search" class="search" placeholder="Search title or tags…" />
+    </div>
+  </header>
+
+  <!-- Left: Form + preview -->
+  <section>
+    <div class="card" aria-labelledby="form-title">
+      <h2 id="form-title" style="margin-top:0;font-size:16px">Create / Edit Article</h2>
+
+      <div style="display:grid;gap:10px">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" type="text" placeholder="Enter news headline" />
+        </div>
+
+        <div>
+          <label for="summary">Summary (short)</label>
+          <input id="summary" type="text" placeholder="Short summary for listing" />
+        </div>
+
+        <div>
+          <label for="body">Body (HTML allowed)</label>
+          <textarea id="body" placeholder="Write article body."></textarea>
+          <div class="small">Tip: use &lt;p&gt;, &lt;br&gt;, &lt;strong&gt; tags.</div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="image">Feature image (optional)</label>
+            <input id="image" type="file" accept="image/*" />
+            <div id="imagePreview" class="small muted">No image chosen</div>
+          </div>
+          <div style="width:160px">
+            <label for="pubDate">Publish date</label>
+            <input id="pubDate" type="date" />
+            <div class="small">Leave empty to publish immediately.</div>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button id="saveDraft" class="btn ghost">Save Draft</button>
+          <button id="publish" class="btn">Publish</button>
+          <button id="previewBtn" class="btn ghost">Preview</button>
+          <div style="flex:1"></div>
+          <button id="clearBtn" class="btn red">Clear</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="card">
+      <h3 class="card-title">Preview</h3>
+      <div id="preview" class="preview">
+        <div class="muted">Nothing to preview yet — fill the form and click Preview.</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- The entire JS stays as-is -->
+<script src="news-module.js"></script>
+
+</body>
+</html>
