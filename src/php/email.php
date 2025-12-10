@@ -37,17 +37,17 @@
     
     
     $mail->Username = "cedrickced820@gmail.com";
-    $mail->Password = "zbdideuwwygoxwnd"; 
+    $mail->Password = "abcjsrbtmsztdkio"; 
 
     $mail->setFrom("cedrickced820@gmail.com", "The Philippine Artisan");
     $mail->addAddress($email);
 
     $mail->Subject = "Welcome to The Philippine Artisan"; 
-    $mail->Body = "Thank you for subscribing with email: " . $email; 
+    $mail->Body = "Thank you for subscribing with email: {$email}"; 
 
     $mail->send(); 
     
-    echo "NASEND NA!!!"; 
+    echo "Email Sent!"; 
   } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
