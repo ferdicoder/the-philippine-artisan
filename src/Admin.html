@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <header class="admin-header">
+    <div class="brand">
+      <h1>Admin Dashboard</h1>
+      <small id="currentUser">Loading...</small>
+    </div>
+    <nav class="admin-nav">
+      <a href="HomePage.html" class="link">Home</a>
+      <button id="logoutBtn" class="btn danger">Logout</button>
+    </nav>
+  </header>
+
+  <main class="admin-container">
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-top">
+          <h3>Total Users</h3>
+          <span class="stat-icon">👥</span>
+        </div>
+        <p id="statTotal" class="stat-value">0</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <h3>Admin Count</h3>
+          <span class="stat-icon">🛡️</span>
+        </div>
+        <p id="statAdmins" class="stat-value">0</p>
+      </div>
+      <div class="stat-card span-2">
+        <div class="stat-top">
+          <h3>Recent Signups</h3>
+          <span class="stat-icon">⏱️</span>
+        </div>
+        <ul id="recentUsers" class="recent-list"></ul>
+      </div>
+    </section>
+
+    <section class="users-section">
+      <div class="section-header">
+        <h2>Manage Users</h2>
+        <div class="actions">
+          <input id="searchInput" class="input" placeholder="Search by name or email" />
+          <button id="openCreateModal" class="btn primary">+ Create User</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Create/Update Modal -->
+    <div id="userModal" class="modal hidden" aria-hidden="true" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Create User</h3>
+          <button id="closeModal" class="icon-btn" aria-label="Close">✕</button>
+        </div>
+        <form id="userForm" class="form-grid">
+          <input type="hidden" id="userId" />
+          <label>
+            <span>Name</span>
+            <input type="text" id="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="email" required />
+          </label>
+          <label>
+            <span>Role</span>
+            <select id="role">
+              <option>User</option>
+              <option>Admin</option>
+            </select>
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="password" placeholder="(leave empty to keep)" />
+          </label>
+          <div class="modal-actions">
+            <button type="submit" class="btn primary" id="saveBtn">Save</button>
+            <button type="button" class="btn" id="cancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/admin-dashboard.js"></script>
+</body>
+</html>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="articlesTable">
+            <tr>
+              <td>Mr. & Ms. TUP candidates partake in sashing ceremony</td>
+              <td>Nicholai Santos</td>
+              <td>Dec 2, 2025</td>
+              <td><span class="status published">Published</span></td>
+              <td>
+                <button class="btn-small">Edit</button>
+                <button class="btn-small delete">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Users Section -->
+      <div id="users" class="admin-section">
+        <h2>Manage Users</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Join Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTable">
+            <tr>
+              <td>Nicholai Santos</td>
+              <td>nicholai.santos@email.com</td>
+              <td>Nov 15, 2025</td>
+              <td><span class="status active">Active</span></td>
+              <td>
+                <button class="btn-small">Edit</button>
+                <button class="btn-small delete">Deactivate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Events Section -->
+      <div id="events" class="admin-section">
+        <h2>Manage Events</h2>
+        <button class="btn-filled" id="addEventBtn">Add New Event</button>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTable">
+            <tr>
+              <td>ADFA Sportsfest</td>
+              <td>Nov 25 - 27, 2025</td>
+              <td>TUP Covered Court</td>
+              <td><span class="status completed">Completed</span></td>
+              <td>
+                <button class="btn-small">Edit</button>
+                <button class="btn-small delete">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Subscriptions Section -->
+      <div id="subscriptions" class="admin-section">
+        <h2>Newsletter Subscriptions</h2>
+        <div class="subscriptions-info">
+          <p>Total Subscribers: <strong>89</strong></p>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Subscription Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="subscriptionsTable">
+            <tr>
+              <td>nicholai.santos@email.com</td>
+              <td>Dec 10, 2025</td>
+              <td><span class="status active">Active</span></td>
+              <td>
+                <button class="btn-small delete">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../src/scripts/admin.js"></script>
+<script src="../src/scripts/admin-dashboard.js"></script>
+</body>
+</html>

@@ -38,15 +38,15 @@
           <h1>Welcome Back</h1>
           <p class="subtitle">Sign in to your account</p>
 
-          <form action="#" method="POST" class="signup-form">
+          <form id="signInForm" class="signup-form">
               <div class="input-group">
                   <label>Email Address</label>
-                  <input type="email" placeholder="Enter your email" required />
+                  <input type="email" id="email" placeholder="Enter your email" required />
               </div>
 
               <div class="input-group">
                   <label>Password</label>
-                  <input type="password" placeholder="Enter your password" required />
+                  <input type="password" id="password" placeholder="Enter your password" required />
               </div>
 
               <div class="input-group remember-forgot">
@@ -65,5 +65,25 @@
           </p>
       </div>
   </div>
+
+<script src="scripts/admin.js"></script>
+<script>
+  // Sign In form handler
+  document.getElementById('signInForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Try to authenticate as admin
+    if (AdminModule.authenticateAdmin(email, password)) {
+      // Redirect to admin dashboard
+      window.location.href = 'Admin.html';
+    } else {
+      // Regular user sign in (can be extended for regular user authentication)
+      alert('Invalid credentials. Please try again or sign up for a new account.');
+    }
+  });
+</script>
 </body>
 </html>
