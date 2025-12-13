@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="src/styles/header.css">
   <link rel="stylesheet" href="src/styles/footer.css">
   <link rel="stylesheet" href="src/styles/home.css">
+  <link rel="icon" href="assets/artisan-logo.png" type="image/png">
 </head>
 
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <nav class="nav">
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="headlines.html">Headlines</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="#more">More</a></li>
-    </ul>
-  </nav>
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../headlines.html">Headlines</a></li>
+        <li><a href="../events.html">Events</a></li>
+        <li><a href="#more">More</a></li>
+      </ul>
+    </nav>
 
   <div class="logo-title">
     <img src="assets/about-logo-1.jpg" class="logo" alt="Artisan Logo">
@@ -33,9 +34,9 @@
 
   <div class="header-actions">
     <button class="btn-outline" onclick="window.location.href='src/SignIn.html'">Sign In</button>
-    <button class="btn-filled">Subscribe</button>
+    <button class="btn-filled">Sign Up</button>
   </div>
-</header>
+  </header>
 
 <!-- MAIN WRAPPER -->
 <main class="home-layout">
@@ -164,14 +165,26 @@
 
     <section class="newsletter">
       <h3>Newsletter Sign-Up</h3>
-      <form>
-        <input type="email" placeholder="Enter Email" required>
-        <button type="submit">Subscribe</button>
+      <form action="src/php/email.php" method="post" id="newsletter-form">
+        <input type="email" placeholder="Enter Email" name="email" required>
+        <button type="submit" id="subscribe-btn">Subscribe</button>
       </form>
     </section>
   </div>
 </footer>
 
 <script src="nav-links.js"></script>
+<script>
+  // Prevent double form submission
+  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    const btn = document.getElementById('subscribe-btn');
+    if (btn.disabled) {
+      e.preventDefault();
+      return false;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+  });
+</script>
 </body>
 </html>

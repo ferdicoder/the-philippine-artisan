@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="styles/SignUp.css" />
+    <title>Sign Up - The Philippine Artisan</title>
+    <link rel="stylesheet" href="styles/SignUp.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/alerts.css">
 </head>
 <body>
+  <!-- Alert Container -->
+  <div class="alert-container"></div>
+
   <!-- Header -->
   <header class="header">
     <nav class="nav">
       <ul>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../headlines.html">Headlines</a></li>
-        <li><a href="../events.html">Events</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/headlines.html">Headlines</a></li>
+        <li><a href="/events.html">Events</a></li>
         <li><a href="#more">More</a></li>
       </ul>
     </nav>
@@ -38,20 +43,20 @@
           <h1>Create Account</h1>
           <p class="subtitle">Join the Artisan community today!</p>
 
-          <form action="#" method="POST" class="signup-form">
+          <form class="signup-form">
               <div class="input-group">
-                  <label>Full Name</label>
-                  <input type="text" placeholder="Enter your full name" required />
+                  <label>Full Name *</label>
+                  <input type="text" name="name" placeholder="Enter your full name" required />
               </div>
 
               <div class="input-group">
-                  <label>Email Address</label>
-                  <input type="email" placeholder="Enter your email" required />
+                  <label>Email Address *</label>
+                  <input type="email" name="email" placeholder="Enter your email" required />
               </div>
 
               <div class="input-group">
-                  <label>Password</label>
-                  <input type="password" placeholder="Create a password" required />
+                  <label>Password *</label>
+                  <input type="password" name="password" placeholder="Create a password (min. 6 characters)" required />
               </div>
 
               <button type="submit" class="btn-submit">Sign Up</button>
@@ -62,8 +67,5 @@
           </p>
       </div>
   </div>
-
-<script src="../src/scripts/admin.js"></script>
 </body>
 </html>
-    

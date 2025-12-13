@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Publisher Module</title>
+  <link rel="stylesheet" href="AddNews.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <div>
+          <h1>📰 News Publisher Module</h1>
+          <p class="muted">Create, publish, and manage news articles for The Philippine Artisan</p>
+        </div>
+        <button onclick="logout()" class="btn btn-danger">Logout</button>
+      </div>
+    </header>
+
+    <div id="alertContainer"></div>
+
+    <div class="main-grid">
+      <!-- Left Column: Form & Preview -->
+      <div>
+        <div class="card">
+          <h2>Create / Edit Article</h2>
+          
+          <div id="newsForm">
+            <div class="form-group">
+              <label for="title">Title *</label>
+              <input type="text" id="title" required placeholder="Enter news headline">
+            </div>
+
+            <div class="form-group">
+              <label for="summary">Summary *</label>
+              <input type="text" id="summary" required placeholder="Short summary for listing">
+            </div>
+
+            <div class="form-group">
+              <label for="body">Body Content *</label>
+              <textarea id="body" required placeholder="Write the full article content here..."></textarea>
+              <div class="small">You can use HTML tags like &lt;p&gt;, &lt;br&gt;, &lt;strong&gt;, etc.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="image">Feature Image *</label>
+                <input type="file" id="image" accept="image/*" required>
+                <div id="imagePreviewContainer" class="image-preview-container"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="pubDate">Publish Date *</label>
+                <input type="date" id="pubDate" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="pubTime">Publish Time *</label>
+              <input type="time" id="pubTime" required>
+            </div>
+
+            <div class="form-buttons">
+              <button type="button" id="saveDraft" class="btn btn-secondary">Save Draft</button>
+              <button type="button" id="publish" class="btn btn-success">Publish</button>
+              <button type="button" id="previewBtn" class="btn btn-primary">Preview</button>
+              <button type="button" id="clearBtn" class="btn btn-danger">Clear</button>
+              <a href="../HomePage.html" class="btn btn-primary">Headlines</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Preview</h2>
+          <div id="preview" class="preview">
+            <div class="muted">Fill the form above and click "Preview" to see how your article will look.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Published Articles -->
+      <div>
+        <div class="card">
+          <h2>Published Articles</h2>
+          <div id="newsList" class="news-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="news-module-backend.js"></script>
+</body>
+</html>
