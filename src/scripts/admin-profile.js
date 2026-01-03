@@ -71,7 +71,7 @@ function loadAdminProfile() {
 
     // Update avatar with initials
     const avatarImg = document.getElementById('adminAvatar');
-    avatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(admin.name || 'Admin')}&background=8B0000&color=fff&size=150`;
+    avatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(admin.name || 'Admin')}&background=243978&color=fff&size=150`;
 
     // Populate edit form
     document.getElementById('editAdminName').value = admin.name || '';
