@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear form
         form.reset();
 
-        // Redirect after 1.5 seconds
+        // Redirect to Admin Dashboard after 1.5 seconds
         setTimeout(() => {
-          window.location.href = 'admin module/AddNews.html';
+          window.location.href = 'Admin.html';
         }, 1500);
       } else {
         // Show error message from server

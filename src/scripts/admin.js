@@ -1,6 +1,7 @@
 /**
  * Admin Module
  * Handles admin authentication, authorization, and user management
+ * Updated to work with PHP backend
  */
 
 const AdminModule = (function() {
@@ -8,61 +9,36 @@ const AdminModule = (function() {
 
   // Admin configuration
   const config = {
-    adminRole: 'admin',
-    sessionStorageKey: 'adminUser',
-    tokenKey: 'adminToken'
+    adminRole: 'Admin',
+    tokenKey: 'token',
+    userKey: 'user'
   };
 
-  // Admin user storage
-  let currentAdmin = null;
-
   /**
-   * Check if user is authenticated as admin
+   * Check if user is authenticated
    */
   function isAdminAuthenticated() {
-    const storedAdmin = sessionStorage.getItem(config.sessionStorageKey);
-    return storedAdmin !== null && storedAdmin !== undefined;
+    const token = localStorage.getItem(config.tokenKey);
+    const user = localStorage.getItem(config.userKey);
+    return token !== null && user !== null;
   }
 
   /**
    * Check if user has admin privileges
    */
-  function hasAdminPrivileges(userRole) {
-    return userRole === config.adminRole;
+  function hasAdminPrivileges() {
+    const user = getCurrentAdmin();
+    return user && user.role === config.adminRole;
   }
 
   /**
-   * Authenticate admin user
-   * @param {string} email - Admin email
-   * @param {string} password - Admin password
-   * @returns {boolean} - Authentication success status
+   * Authenticate admin user (now handled by PHP backend via SignIn.js)
+   * This is kept for backward compatibility
    */
   function authenticateAdmin(email, password) {
-    // Validation
-    if (!email || !password) {
-      console.error('Email and password are required');
-      return false;
-    }
-
-    // In production, this would validate against a backend API
-    // For now, we're using a mock validation
-    const adminCredentials = {
-      email: 'admin@philippineartisan.com',
-      password: 'admin123' // In production, use secure hashing
-    };
-
-    if (email === adminCredentials.email && password === adminCredentials.password) {
-      const adminUser = {
-        email: email,
-        role: config.adminRole,
-        loginTime: new Date().toISOString()
-      };
-
-      currentAdmin = adminUser;
-      sessionStorage.setItem(config.sessionStorageKey, JSON.stringify(adminUser));
-      return true;
-    }
-
+    // Authentication is now handled by SignIn.js via PHP backend
+    // This function is deprecated but kept for compatibility
+    console.warn('authenticateAdmin is deprecated. Use SignIn.js instead.');
     return false;
   }
 
@@ -70,22 +46,23 @@ const AdminModule = (function() {
    * Get current admin user
    */
   function getCurrentAdmin() {
-    if (!currentAdmin) {
-      const stored = sessionStorage.getItem(config.sessionStorageKey);
-      if (stored) {
-        currentAdmin = JSON.parse(stored);
+    const stored = localStorage.getItem(config.userKey);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return null;
       }
     }
-    return currentAdmin;
+    return null;
   }
 
   /**
    * Logout admin user
    */
   function logoutAdmin() {
-    currentAdmin = null;
-    sessionStorage.removeItem(config.sessionStorageKey);
-    sessionStorage.removeItem(config.tokenKey);
+    localStorage.removeItem(config.tokenKey);
+    localStorage.removeItem(config.userKey);
   }
 
   /**
@@ -93,7 +70,7 @@ const AdminModule = (function() {
    */
   function protectAdminPage() {
     if (!isAdminAuthenticated()) {
-      window.location.href = 'SignIn.html?redirect=admin';
+      window.location.href = 'SignIn.html';
       return false;
     }
     return true;

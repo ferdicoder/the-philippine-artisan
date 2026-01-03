@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show success message
         showAlert('Account created successfully! Redirecting...', 'success');
 
-        // Redirect after 2 seconds
+        // Redirect to Admin Dashboard after 2 seconds
         setTimeout(() => {
-          window.location.href = 'admin module/AddNews.html';
+          window.location.href = 'Admin.html';
         }, 2000);
       } else {
         // Show error message from server

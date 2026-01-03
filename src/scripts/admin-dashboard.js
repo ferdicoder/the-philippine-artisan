@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Admin dashboard logic: fetch stats and users, support CRUD
   (function () {
-    const API_BASE = 'http://localhost:4000/api';
+    const API_BASE = '/the-philippine-artisan/src/php/api';
 
     const token = localStorage.getItem('token');
     const headers = token
@@ -68,32 +68,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function fetchMe() {
       ensureToken();
-      const res = await fetch(API_BASE + '/users/me', { headers });
+      const res = await fetch(API_BASE + '/auth/me.php', { headers });
       if (!res.ok) throw new Error('Failed to fetch current user');
-      const me = await res.json();
+      const data = await res.json();
+      const me = data.data.user;
       currentUserEl.textContent = `${me.name} (${me.role})`;
       if (me.role !== 'Admin') {
         alert('Admins only.');
-        window.location.href = 'HomePage.html';
+        window.location.href = 'index.html';
       }
     }
 
     async function fetchDashboard() {
-      const res = await fetch(API_BASE + '/admin/dashboard', { headers });
+      const res = await fetch(API_BASE + '/admin/dashboard.php', { headers });
       if (!res.ok) throw new Error('Failed to fetch dashboard');
       const data = await res.json();
-      statTotal.textContent = data.totalUsers;
-      statAdmins.textContent = data.adminCount;
-      recentUsers.innerHTML = data.recentUsers
+      statTotal.textContent = data.data.stats.totalUsers;
+      statAdmins.textContent = data.data.stats.totalAdmins;
+      recentUsers.innerHTML = data.data.recentUsers
         .map((u) => `<li>${u.name} • ${u.email}</li>`)
         .join('');
     }
 
     let USERS_CACHE = [];
     async function fetchUsers() {
-      const res = await fetch(API_BASE + '/users', { headers });
+      const res = await fetch(API_BASE + '/users/index.php', { headers });
       if (!res.ok) throw new Error('Failed to fetch users');
-      const users = await res.json();
+      const data = await res.json();
+      const users = data.data.users;
       USERS_CACHE = users;
       renderUsers(users);
     }
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function createUser(data) {
-      const res = await fetch(API_BASE + '/users', {
+      const res = await fetch(API_BASE + '/users/index.php', {
         method: 'POST',
         headers,
         body: JSON.stringify(data),
@@ -133,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function updateUser(id, data) {
-      const res = await fetch(API_BASE + '/users/' + id, {
+      const res = await fetch(API_BASE + '/users/user.php?id=' + id, {
         method: 'PUT',
         headers,
         body: JSON.stringify(data),
@@ -145,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function deleteUser(id) {
       if (!confirm('Delete this user?')) return;
-      const res = await fetch(API_BASE + '/users/' + id, { method: 'DELETE', headers });
+      const res = await fetch(API_BASE + '/users/user.php?id=' + id, { method: 'DELETE', headers });
       if (!res.ok) throw new Error('Failed to delete user');
       showToast('User deleted');
       await fetchUsers();
