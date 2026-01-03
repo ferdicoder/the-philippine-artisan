@@ -15,12 +15,11 @@ const AdminModule = (function() {
   };
 
   /**
-   * Check if user is authenticated
+   * Check if user is authenticated (token exists)
    */
   function isAdminAuthenticated() {
     const token = localStorage.getItem(config.tokenKey);
-    const user = localStorage.getItem(config.userKey);
-    return token !== null && user !== null;
+    return token !== null;
   }
 
   /**

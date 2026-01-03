@@ -13,10 +13,27 @@ document.addEventListener('DOMContentLoaded', function() {
   (function () {
     const API_BASE = '/the-philippine-artisan/src/php/api';
 
+    // Debug: Check if running from localhost
+    if (window.location.protocol === 'file:') {
+      alert('Error: You must access this page via http://localhost, not as a file. Please open http://localhost/the-philippine-artisan/src/Admin.html');
+      return;
+    }
+
     const token = localStorage.getItem('token');
-    const headers = token
-      ? { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }
-      : { 'Content-Type': 'application/json' };
+    console.log('Token found:', token ? 'Yes (length: ' + token.length + ')' : 'No');
+    console.log('Token value:', token ? token.substring(0, 50) + '...' : 'null');
+    
+    if (!token) {
+      console.error('No token found in localStorage. Please login first.');
+      alert('Please login first.');
+      window.location.href = 'SignIn.html';
+      return;
+    }
+    
+    const headers = { 
+      'Authorization': 'Bearer ' + token, 
+      'Content-Type': 'application/json' 
+    };
 
     const el = (id) => document.getElementById(id);
     const logoutBtn = el('logoutBtn');
@@ -72,29 +89,73 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function fetchMe() {
       ensureToken();
-      const res = await fetch(API_BASE + '/auth/me.php', { headers });
-      if (!res.ok) throw new Error('Failed to fetch current user');
-      const data = await res.json();
-      const me = data.data.user;
-      if (currentUserEl) currentUserEl.textContent = `${me.name} (${me.role})`;
+      const url = API_BASE + '/auth/me.php';
+      console.log('Fetching:', url);
+      console.log('Headers being sent:', JSON.stringify(headers));
       
-      // Populate sidebar admin info
-      if (sidebarAdminName) sidebarAdminName.textContent = me.name;
-      if (sidebarAdminEmail) sidebarAdminEmail.textContent = me.email;
-      if (adminAvatar) {
-        adminAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(me.name)}&background=243978&color=fff&size=150`;
-      }
-      
-      if (me.role !== 'Admin') {
-        alert('Admins only.');
-        window.location.href = 'index.html';
+      try {
+        const res = await fetch(url, { 
+          method: 'GET',
+          headers: headers,
+          credentials: 'same-origin'
+        });
+        console.log('Response status:', res.status);
+        console.log('Response ok:', res.ok);
+        console.log('Response headers:', [...res.headers.entries()]);
+        
+        const text = await res.text();
+        console.log('Raw response:', text);
+        
+        if (!text) {
+          throw new Error('Empty response from server');
+        }
+        
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (parseErr) {
+          console.error('JSON parse error:', parseErr);
+          console.error('Response text was:', text);
+          throw new Error('Invalid JSON response from server');
+        }
+        
+        console.log('Parsed data:', data);
+        
+        if (!data.success) {
+          throw new Error(data.message || 'API returned error');
+        }
+        
+        const me = data.data.user;
+        console.log('User loaded:', me);
+        
+        if (currentUserEl) currentUserEl.textContent = `${me.name} (${me.role})`;
+        
+        // Populate sidebar admin info
+        if (sidebarAdminName) sidebarAdminName.textContent = me.name;
+        if (sidebarAdminEmail) sidebarAdminEmail.textContent = me.email;
+        if (adminAvatar) {
+          adminAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(me.name)}&background=243978&color=fff&size=150`;
+        }
+        
+        if (me.role !== 'Admin') {
+          alert('Admins only.');
+          window.location.href = 'index.html';
+        }
+        
+        return me;
+      } catch (err) {
+        console.error('Fetch exception:', err.message);
+        throw err;
       }
     }
 
     async function fetchDashboard() {
       const res = await fetch(API_BASE + '/admin/dashboard.php', { headers });
-      if (!res.ok) throw new Error('Failed to fetch dashboard');
       const data = await res.json();
+      if (!res.ok) {
+        console.error('fetchDashboard error:', data);
+        throw new Error(data.message || 'Failed to fetch dashboard');
+      }
       statTotal.textContent = data.data.stats.totalUsers;
       statAdmins.textContent = data.data.stats.totalAdmins;
       recentUsers.innerHTML = data.data.recentUsers
@@ -105,8 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let USERS_CACHE = [];
     async function fetchUsers() {
       const res = await fetch(API_BASE + '/users/index.php', { headers });
-      if (!res.ok) throw new Error('Failed to fetch users');
       const data = await res.json();
+      if (!res.ok) {
+        console.error('fetchUsers error:', data);
+        throw new Error(data.message || 'Failed to fetch users');
+      }
       const users = data.data.users;
       USERS_CACHE = users;
       renderUsers(users);
@@ -259,13 +323,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Init
     (async function init() {
       try {
+        console.log('=== Admin Dashboard Initialization ===');
+        console.log('API Base:', API_BASE);
+        console.log('Current URL:', window.location.href);
+        console.log('Protocol:', window.location.protocol);
+        
         await fetchMe();
         await fetchDashboard();
         await fetchUsers();
+        console.log('=== Dashboard loaded successfully ===');
       } catch (err) {
-        console.error(err);
-        alert('Failed to load admin data. Please login as Admin.');
-        window.location.href = 'SignIn.html';
+        console.error('Admin dashboard error:', err);
+        console.error('Error stack:', err.stack);
+        alert('Failed to load admin data: ' + err.message + '\n\nPlease check the browser console (F12) for details.');
+        // Only redirect if it's an auth error
+        if (err.message.includes('token') || err.message.includes('auth') || err.message.includes('401')) {
+          window.location.href = 'SignIn.html';
+        }
       }
     })();
   })();
