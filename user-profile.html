@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile | The Philippine Artisan</title>
+  <link rel="stylesheet" href="src/styles/header.css">
+  <link rel="stylesheet" href="src/styles/footer.css">
+  <link rel="stylesheet" href="src/styles/user-profile.css">
+  <link rel="icon" href="assets/artisan-logo.png" type="image/png">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="headlines.html">Headlines</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="src/admin module/AddNews.html">More</a></li>
+      </ul>
+    </nav>
+
+    <div class="logo-title">
+      <img src="assets/artisan-logo.jpg" class="logo" alt="Artisan Logo">
+      <div class="title-text">
+        <p class="sub">THE PHILIPPINE</p>
+        <h1 class="main">Artisan</h1>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="src/SignUp.html" class="btn-outline">Sign Up</a>
+      <a href="src/SignIn.html" class="btn-filled">Sign In</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="profile-container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="avatar">
+          <img src="assets/default-avatar.png" alt="User Avatar" id="userAvatar" onerror="this.src='https://ui-avatars.com/api/?name=User&background=8B0000&color=fff&size=150'">
+        </div>
+        <div class="profile-info">
+          <h1 id="userName">Loading...</h1>
+          <p class="user-role" id="userRole">User</p>
+          <p class="user-email" id="userEmail">loading@email.com</p>
+        </div>
+      </div>
+
+      <div class="profile-details">
+        <h2>Profile Information</h2>
+        
+        <form id="profileForm" class="profile-form">
+          <div class="form-group">
+            <label for="editName">Full Name</label>
+            <input type="text" id="editName" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="editEmail">Email Address</label>
+            <input type="email" id="editEmail" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="editBio">Bio</label>
+            <textarea id="editBio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save Changes</button>
+            <button type="button" class="btn-secondary" id="cancelEdit">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-section">
+        <h2>Change Password</h2>
+        <form id="passwordForm" class="password-form">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" name="currentPassword" required>
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required minlength="6">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Update Password</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-section">
+        <h2>My Activity</h2>
+        <div class="activity-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="articlesCount">0</span>
+            <span class="stat-label">Articles Published</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="commentsCount">0</span>
+            <span class="stat-label">Comments</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="memberSince">-</span>
+            <span class="stat-label">Member Since</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section danger-zone">
+        <h2>Danger Zone</h2>
+        <p>Once you delete your account, there is no going back. Please be certain.</p>
+        <button class="btn-danger" id="deleteAccount">Delete Account</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <img src="assets/artisan-logo.png" class="footer-logo">
+      <h1 class="footer-title">The Philippine Artisan Manila</h1>
+
+      <div class="social-links">
+        <a href="#"><img src="https://clipartcraft.com/images/facebook-logo-png-format.png"></a>
+        <a href="#"><img src="https://sno.bsmu.by/images/instagram-icon.png"></a>
+        <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/045/872/295/large_2x/youtube-transparent-logo-youtube-logo-transparent-background-free-png.png"></a>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-grid">
+      <section>
+        <h3>About The Philippine Artisan</h3>
+        <p>The Official Student Publication of TUP – Manila.</p>
+      </section>
+
+      <section>
+        <h3>Quick Links</h3>
+        <ul class="links">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </section>
+
+      <section class="newsletter">
+        <h3>Newsletter Sign-Up</h3>
+        <form action="src/php/email.php" method="post">
+          <input type="email" placeholder="Enter Email" name="email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </div>
+  </footer>
+
+  <script src="src/scripts/dynamic-nav.js"></script>
+  <script src="src/scripts/user-profile.js"></script>
+</body>
+</html>

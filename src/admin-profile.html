@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Profile | The Philippine Artisan</title>
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/admin-profile.css">
+  <link rel="icon" href="../assets/artisan-logo.png" type="image/png">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../headlines.html">Headlines</a></li>
+        <li><a href="../events.html">Events</a></li>
+        <li><a href="admin module/AddNews.html">More</a></li>
+      </ul>
+    </nav>
+
+    <div class="logo-title">
+      <img src="../assets/artisan-logo.jpg" class="logo" alt="Artisan Logo">
+      <div class="title-text">
+        <p class="sub">THE PHILIPPINE</p>
+        <h1 class="main">Artisan</h1>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="SignUp.html" class="btn-outline">Sign Up</a>
+      <a href="SignIn.html" class="btn-filled">Sign In</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="admin-profile-container">
+    <div class="profile-wrapper">
+      <!-- Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="admin-avatar">
+          <img src="../assets/default-avatar.png" alt="Admin Avatar" id="adminAvatar" 
+            onerror="this.src='https://ui-avatars.com/api/?name=Admin&background=8B0000&color=fff&size=150'">
+          <span class="admin-badge">Admin</span>
+        </div>
+        <h2 id="adminName">Admin Name</h2>
+        <p class="admin-email" id="adminEmail">admin@email.com</p>
+        
+        <nav class="profile-nav">
+          <a href="Admin.html" class="nav-item">
+            Dashboard
+          </a>
+          <a href="admin-profile.html" class="nav-item active">
+            My Profile
+          </a>
+          <a href="admin module/AddNews.html" class="nav-item">
+            Publish News
+          </a>
+          <button class="nav-item logout-btn" id="sidebarLogout">
+            Logout
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="profile-main">
+        <div class="page-header">
+          <h1>Admin Profile</h1>
+          <p>Manage your administrator account settings</p>
+        </div>
+
+        <!-- Profile Information Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Profile Information</h2>
+            <button class="btn-edit" id="editProfileBtn">Edit</button>
+          </div>
+          <div class="card-body">
+            <form id="adminProfileForm" class="profile-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="editAdminName">Full Name</label>
+                  <input type="text" id="editAdminName" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="editAdminEmail">Email Address</label>
+                  <input type="email" id="editAdminEmail" name="email" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="editAdminBio">Bio / Description</label>
+                <textarea id="editAdminBio" name="bio" rows="3" placeholder="Write a short bio..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="editDepartment">Department</label>
+                <input type="text" id="editDepartment" name="department" placeholder="e.g., Editorial Board">
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Save Changes</button>
+                <button type="button" class="btn-secondary" id="cancelProfileEdit">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Security Settings Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Security Settings</h2>
+          </div>
+          <div class="card-body">
+            <form id="adminPasswordForm" class="password-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="adminCurrentPassword">Current Password</label>
+                  <input type="password" id="adminCurrentPassword" name="currentPassword" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="adminNewPassword">New Password</label>
+                  <input type="password" id="adminNewPassword" name="newPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                  <label for="adminConfirmPassword">Confirm New Password</label>
+                  <input type="password" id="adminConfirmPassword" name="confirmPassword" required minlength="6">
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Update Password</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Admin Statistics Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Admin Statistics</h2>
+          </div>
+          <div class="card-body">
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-content">
+                  <span class="stat-value" id="totalArticles">0</span>
+                  <span class="stat-label">Articles Published</span>
+                </div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-content">
+                  <span class="stat-value" id="totalUsers">0</span>
+                  <span class="stat-label">Users Managed</span>
+                </div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-content">
+                  <span class="stat-value" id="adminSince">-</span>
+                  <span class="stat-label">Admin Since</span>
+                </div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-content">
+                  <span class="stat-value" id="lastLogin">-</span>
+                  <span class="stat-label">Last Login</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Log Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Recent Activity</h2>
+            <a href="Admin.html" class="btn-link">View All</a>
+          </div>
+          <div class="card-body">
+            <div class="activity-list" id="activityList">
+              <div class="activity-item">
+                <div class="activity-content">
+                  <p class="activity-text">No recent activity</p>
+                  <span class="activity-time">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <img src="../assets/artisan-logo.png" class="footer-logo">
+      <h1 class="footer-title">The Philippine Artisan Manila</h1>
+
+      <div class="social-links">
+        <a href="#"><img src="https://clipartcraft.com/images/facebook-logo-png-format.png"></a>
+        <a href="#"><img src="https://sno.bsmu.by/images/instagram-icon.png"></a>
+        <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/045/872/295/large_2x/youtube-transparent-logo-youtube-logo-transparent-background-free-png.png"></a>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-grid">
+      <section>
+        <h3>About The Philippine Artisan</h3>
+        <p>The Official Student Publication of TUP – Manila.</p>
+      </section>
+
+      <section>
+        <h3>Quick Links</h3>
+        <ul class="links">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </section>
+
+      <section class="newsletter">
+        <h3>Newsletter Sign-Up</h3>
+        <form action="../src/php/email.php" method="post">
+          <input type="email" placeholder="Enter Email" name="email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </div>
+  </footer>
+
+  <script src="scripts/dynamic-nav.js"></script>
+  <script src="scripts/admin-profile.js"></script>
+</body>
+</html>
