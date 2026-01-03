@@ -106,6 +106,7 @@ class User {
             'id' => self::generateId(),
             'name' => $data['name'],
             'email' => $data['email'],
+            'organization' => $data['organization'] ?? '',
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             'role' => $data['role'] ?? 'User',
             'createdAt' => date('Y-m-d H:i:s')

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form');
   const nameInput = form.querySelector('input[name="name"]') || form.querySelector('input[type="text"]');
   const emailInput = form.querySelector('input[name="email"]') || form.querySelector('input[type="email"]');
+  const organizationInput = form.querySelector('input[name="organization"]');
   const passwordInput = form.querySelector('input[name="password"]') || form.querySelector('input[type="password"]');
   const submitButton = form.querySelector('.btn-submit');
 
@@ -55,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
       errors.push('Please enter a valid email address');
     }
 
+    if (!organizationInput.value.trim()) {
+      errors.push('School organization name is required');
+    }
+
     if (!passwordInput.value) {
       errors.push('Password is required');
     } else if (passwordInput.value.length < 6) {
@@ -89,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           name: nameInput.value.trim(),
           email: emailInput.value.trim(),
+          organization: organizationInput.value.trim(),
           password: passwordInput.value
         })
       });

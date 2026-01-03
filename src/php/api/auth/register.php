@@ -22,6 +22,7 @@ $input = json_decode(file_get_contents('php://input'), true);
 
 $name = trim($input['name'] ?? '');
 $email = trim($input['email'] ?? '');
+$organization = trim($input['organization'] ?? '');
 $password = $input['password'] ?? '';
 
 // Validate input
@@ -29,6 +30,10 @@ $errors = [];
 
 if (empty($name)) {
     $errors['name'] = 'Name is required';
+}
+
+if (empty($organization)) {
+    $errors['organization'] = 'School organization name is required';
 }
 
 if (empty($email)) {
@@ -57,6 +62,7 @@ try {
     $user = User::create([
         'name' => $name,
         'email' => $email,
+        'organization' => $organization,
         'password' => $password,
         'role' => 'User'
     ]);
