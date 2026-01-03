@@ -1,6 +1,7 @@
-// SignIn.js - Complete Standalone Version
-// Works WITHOUT backend - Uses localStorage only
-// Place this in: scripts/SignIn.js
+// SignIn.js - PHP Backend Integration
+// Connected to: /src/php/api/auth/login.php
+
+const API_URL = '/the-philippine-artisan/src/php/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form') || document.querySelector('.signin-form');
@@ -86,50 +87,42 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.textContent = 'Signing In...';
 
     try {
-      // Get users from localStorage
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      // Make API request to PHP backend
+      const response = await fetch(`${API_URL}/auth/login.php`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailInput.value.trim(),
+          password: passwordInput.value
+        })
+      });
 
-      // Find user with matching email
-      const user = users.find(u => u.email === emailInput.value.trim().toLowerCase());
+      const data = await response.json();
 
-      if (!user) {
-        showAlert('No account found with this email. Please sign up first.', 'error');
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-        return;
+      if (data.success) {
+        // Save token and user to localStorage
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
+
+        // Show success message
+        showAlert(`Welcome back, ${data.data.user.name}! Redirecting...`, 'success');
+
+        // Clear form
+        form.reset();
+
+        // Redirect after 1.5 seconds
+        setTimeout(() => {
+          window.location.href = 'admin module/AddNews.html';
+        }, 1500);
+      } else {
+        // Show error message from server
+        showAlert(data.message || 'Invalid credentials. Please try again.', 'error');
       }
-
-      // Check password
-      if (user.password !== passwordInput.value) {
-        showAlert('Incorrect password. Please try again.', 'error');
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-        return;
-      }
-
-      // Create token and save user session
-      const token = 'user_' + user.id;
-      localStorage.setItem('token', token);
-      localStorage.setItem('currentUser', JSON.stringify({
-        id: user.id,
-        name: user.name,
-        email: user.email
-      }));
-
-      // Show success message
-      showAlert(`Welcome back, ${user.name}! Redirecting...`, 'success');
-
-      // Clear form
-      form.reset();
-
-      // Redirect to AddNews page after 1.5 seconds
-      setTimeout(() => {
-        window.location.href = 'Admin/AddNews.html';
-      }, 1500);
-
     } catch (error) {
       console.error('Sign in error:', error);
-      showAlert('An error occurred. Please try again.', 'error');
+      showAlert('Network error. Please check if XAMPP Apache is running.', 'error');
     } finally {
       // Re-enable submit button
       submitButton.disabled = false;

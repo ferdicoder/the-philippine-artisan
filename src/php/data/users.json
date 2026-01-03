@@ -1,0 +1,18 @@
+[
+    {
+        "id": "7ce5104a80f914e1bff8ae4f2010842b",
+        "name": "Admin",
+        "email": "admin@example.com",
+        "password": "$2y$10$mD\/0eDYvKWiTe6s8uoUavOyFnny7ijLGPqdEACmybv2fdRPMcfK86",
+        "role": "Admin",
+        "createdAt": "2026-01-03 18:11:38"
+    },
+    {
+        "id": "4f6a3bdb0b305e495a8e2967c23577f2",
+        "name": "Demo User",
+        "email": "user@example.com",
+        "password": "$2y$10$6Vm\/MW5z6kn2T1sKleQ8mev0Qqihn5GpqchSO2FRxuEhg\/kjyliQG",
+        "role": "User",
+        "createdAt": "2026-01-03 18:11:38"
+    }
+]

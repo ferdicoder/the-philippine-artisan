@@ -1,13 +1,13 @@
-// SignUp.js - Backend Integration
-// Add this script to your SignUp.html before closing </body> tag
+// SignUp.js - PHP Backend Integration
 
-const API_URL = 'http://localhost:5000/api';
+
+const API_URL = '/the-philippine-artisan/src/php/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form');
-  const nameInput = form.querySelector('input[type="text"]');
-  const emailInput = form.querySelector('input[type="email"]');
-  const passwordInput = form.querySelector('input[type="password"]');
+  const nameInput = form.querySelector('input[name="name"]') || form.querySelector('input[type="text"]');
+  const emailInput = form.querySelector('input[name="email"]') || form.querySelector('input[type="email"]');
+  const passwordInput = form.querySelector('input[name="password"]') || form.querySelector('input[type="password"]');
   const submitButton = form.querySelector('.btn-submit');
 
   // Create alert container if it doesn't exist
@@ -80,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.textContent = 'Creating Account...';
 
     try {
-      // Make API request to backend
-      const response = await fetch(`${API_URL}/auth/signup`, {
+      // Make API request to PHP backend
+      const response = await fetch(`${API_URL}/auth/register.php`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -96,16 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       if (data.success) {
-        // Save token to localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        // Save token and user to localStorage
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
 
         // Show success message
         showAlert('Account created successfully! Redirecting...', 'success');
 
-        // Redirect to dashboard or home page after 2 seconds
+        // Redirect after 2 seconds
         setTimeout(() => {
-          window.location.href = 'Admin/AddNews.html'; // Change to your dashboard page
+          window.location.href = 'admin module/AddNews.html';
         }, 2000);
       } else {
         // Show error message from server
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       console.error('Sign up error:', error);
-      showAlert('Network error. Please check your connection and try again.', 'error');
+      showAlert('Network error. Please check if XAMPP Apache is running.', 'error');
     } finally {
       // Re-enable submit button
       submitButton.disabled = false;
