@@ -11,11 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Admin dashboard logic: fetch stats and users, support CRUD
   (function () {
-    const API_BASE = '/the-philippine-artisan/src/php/api';
+    // Use relative path - Admin.html is at /src/Admin.html, API is at /src/php/api
+    const API_BASE = 'php/api';
 
     // Debug: Check if running from localhost
     if (window.location.protocol === 'file:') {
-      alert('Error: You must access this page via http://localhost, not as a file. Please open http://localhost/the-philippine-artisan/src/Admin.html');
+      alert('Error: You must access this page via http://localhost, not as a file.');
       return;
     }
 

@@ -1,7 +1,8 @@
 // SignIn.js - PHP Backend Integration
 // Connected to: /src/php/api/auth/login.php
 
-const API_URL = '/the-philippine-artisan/src/php/api';
+// Use relative path - SignIn.html is at /src/SignIn.html, API is at /src/php/api
+const API_URL = 'php/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form') || document.querySelector('.signin-form');

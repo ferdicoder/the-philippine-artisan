@@ -3,7 +3,8 @@
  * Manages user profile display and updates
  */
 
-const API_URL = '/the-philippine-artisan/src/php/api';
+// Use relative path - user-profile.html is at root level, API is at /src/php/api
+const API_URL = 'src/php/api';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in

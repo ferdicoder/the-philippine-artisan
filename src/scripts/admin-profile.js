@@ -3,7 +3,8 @@
  * Manages admin profile display and updates
  */
 
-const API_URL = '/the-philippine-artisan/src/php/api';
+// Use relative path - admin-profile.html is at /src/admin-profile.html, API is at /src/php/api
+const API_URL = 'php/api';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in and is admin

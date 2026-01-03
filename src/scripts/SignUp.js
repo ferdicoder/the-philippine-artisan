@@ -1,7 +1,8 @@
 // SignUp.js - PHP Backend Integration
 
 
-const API_URL = '/the-philippine-artisan/src/php/api';
+// Use relative path - SignUp.html is at /src/SignUp.html, API is at /src/php/api
+const API_URL = 'php/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form');

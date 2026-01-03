@@ -108,4 +108,34 @@ class Auth {
     public static function requireUser(): array {
         return self::authenticate();
     }
+    
+    /**
+     * Check if user is authenticated (non-blocking)
+     * Returns user data if valid token, null otherwise
+     * Unlike authenticate(), this doesn't send error response
+     */
+    public static function check(): ?array {
+        $authHeader = self::getAuthorizationHeader();
+        
+        if (empty($authHeader) || !str_starts_with($authHeader, 'Bearer ')) {
+            return null;
+        }
+        
+        $token = substr($authHeader, 7); // Remove 'Bearer ' prefix
+        $payload = JWT::decode($token, JWT_SECRET);
+        
+        if (!$payload) {
+            return null;
+        }
+        
+        $user = User::findById($payload['id']);
+        
+        if (!$user) {
+            return null;
+        }
+        
+        // Return user without password
+        unset($user['password']);
+        return $user;
+    }
 }
