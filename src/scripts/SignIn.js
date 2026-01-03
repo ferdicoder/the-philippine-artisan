@@ -112,9 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear form
         form.reset();
 
-        // Redirect to Admin Dashboard after 1.5 seconds
+        // Redirect based on user role
         setTimeout(() => {
-          window.location.href = 'Admin.html';
+          if (data.data.user.role && data.data.user.role.toLowerCase() === 'admin') {
+            window.location.href = 'Admin.html';
+          } else {
+            window.location.href = '../index.html';
+          }
         }, 1500);
       } else {
         // Show error message from server

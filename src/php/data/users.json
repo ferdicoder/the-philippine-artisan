@@ -14,5 +14,14 @@
         "password": "$2y$10$6Vm\/MW5z6kn2T1sKleQ8mev0Qqihn5GpqchSO2FRxuEhg\/kjyliQG",
         "role": "User",
         "createdAt": "2026-01-03 18:11:38"
+    },
+    {
+        "id": "5c5e4c06b3bdb98257f99919d0e0a59d",
+        "name": "Ferdinand Gelito",
+        "email": "cedrickced820@gmail.com",
+        "organization": "Philippine Artisan",
+        "password": "$2y$10$kHM1t0KimQy4BAafeKoPjOFLFRtcFgyBUvi9IqcXN6qFiffzLeICS",
+        "role": "User",
+        "createdAt": "2026-01-03 20:01:03"
     }
 ]
