@@ -3,23 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News Publisher Module</title>
+  <title>News Publisher - The Philippine Artisan</title>
   <link rel="stylesheet" href="AddNews.css">
+  <link rel="stylesheet" href="../styles/header.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="header-content">
-        <div>
-          <h1>📰 News Publisher Module</h1>
-          <p class="muted">Create, publish, and manage news articles for The Philippine Artisan</p>
-        </div>
-        <button onclick="logout()" class="btn btn-danger">Logout</button>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../headlines.html">Headlines</a></li>
+        <li><a href="../../events.html">Events</a></li>
+        <li><a href="#more">More</a></li>
+      </ul>
+    </nav>
+
+    <div class="logo-title">
+      <img src="../../assets/artisan-logo.jpg" alt="Artisan Logo" class="logo" />
+      <div class="title-text">
+        <p class="sub">THE PHILIPPINE</p>
+        <h1 class="main">Artisan</h1>
       </div>
-    </header>
+    </div>
 
-    <div id="alertContainer"></div>
+    <div class="header-actions">
+      <a href="../Admin.html" class="btn-outline">Dashboard</a>
+      <a href="/index.html" class="btn-filled">Home</a>
+    </div>
+  </header>
 
+  <!-- Page Title Section -->
+  <div class="page-header">
+    <h1>News Publisher Module</h1>
+    <p class="subtitle">Create, publish, and manage news articles for The Philippine Artisan</p>
+  </div>
+
+  <div id="alertContainer"></div>
+
+  <div class="container">
     <div class="main-grid">
       <!-- Left Column: Form & Preview -->
       <div>
@@ -66,7 +88,6 @@
               <button type="button" id="publish" class="btn btn-success">Publish</button>
               <button type="button" id="previewBtn" class="btn btn-primary">Preview</button>
               <button type="button" id="clearBtn" class="btn btn-danger">Clear</button>
-              <a href="/index.html" class="btn btn-primary">Home</a>
             </div>
           </div>
         </div>
