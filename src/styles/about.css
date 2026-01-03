@@ -105,6 +105,20 @@ body {
 
 
 /* Responsive */
+@media (max-width: 1100px) {
+  .container {
+    padding: 4rem 1.5rem;
+  }
+
+  .intro h2 {
+    font-size: 2.5rem;
+  }
+
+  .content {
+    max-width: 640px;
+  }
+}
+
 @media (max-width: 900px) {
   .header {
     padding: 1rem 2rem;
@@ -126,11 +140,17 @@ body {
 
   .image-group {
     flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 3rem;
   }
 
   .round-img {
     width: 140px;
     height: 140px;
+  }
+
+  .text-block p {
+    font-size: 1.05rem;
   }
 }
 
@@ -154,7 +174,7 @@ body {
   }
 
   .container {
-    padding: 3rem 1.25rem;
+    padding: 2.5rem 1rem;
   }
 
   .intro h2 {
@@ -162,13 +182,26 @@ body {
     margin-bottom: 2rem;
   }
 
+  .decor-line {
+    width: 50px;
+    margin-bottom: 2rem;
+  }
+
   .text-block p {
     font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .image-group {
+    gap: 1rem;
+    margin-top: 2.5rem;
   }
 
   .round-img {
     width: 100px;
     height: 100px;
+    border: 3px solid var(--light);
   }
 
   .newsletter form {
@@ -178,5 +211,20 @@ body {
   .header-actions {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 2rem 0.75rem;
+  }
+
+  .intro h2 {
+    font-size: 1.5rem;
+  }
+
+  .round-img {
+    width: 85px;
+    height: 85px;
   }
 }
