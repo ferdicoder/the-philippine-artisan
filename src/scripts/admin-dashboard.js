@@ -111,9 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
         <tr>
           <td>${u.name}</td>
           <td>${u.email}</td>
-          <td>${u.role}</td>
+          <td><span class="role-badge ${u.role === 'Admin' ? 'admin' : 'user'}">${u.role}</span></td>
           <td>${new Date(u.createdAt).toLocaleString()}</td>
           <td>
+            <button class="btn-small ${u.role === 'Admin' ? 'remove-admin' : 'make-admin'}" data-role="${u.id}" data-current="${u.role}">
+              ${u.role === 'Admin' ? 'Remove Admin' : 'Make Admin'}
+            </button>
             <button class="btn-small" data-edit="${u.id}">Edit</button>
             <button class="btn-small delete" data-delete="${u.id}">Delete</button>
           </td>
@@ -153,6 +156,25 @@ document.addEventListener('DOMContentLoaded', function() {
       await fetchUsers();
     }
 
+    async function toggleAdminRole(id, currentRole) {
+      const newRole = currentRole === 'Admin' ? 'User' : 'Admin';
+      const confirmMsg = currentRole === 'Admin' 
+        ? 'Remove admin privileges from this user?' 
+        : 'Grant admin privileges to this user?';
+      
+      if (!confirm(confirmMsg)) return;
+      
+      const res = await fetch(API_BASE + '/users/user.php?id=' + id, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({ role: newRole }),
+      });
+      if (!res.ok) throw new Error('Failed to update user role');
+      showToast(`User role changed to ${newRole}`);
+      await fetchDashboard();
+      await fetchUsers();
+    }
+
     // Events
     logoutBtn?.addEventListener('click', () => {
       localStorage.removeItem('token');
@@ -171,7 +193,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const t = e.target;
       const editId = t.getAttribute('data-edit');
       const delId = t.getAttribute('data-delete');
-      if (editId) {
+      const roleId = t.getAttribute('data-role');
+      const currentRole = t.getAttribute('data-current');
+      
+      if (roleId && currentRole) {
+        toggleAdminRole(roleId, currentRole);
+      } else if (editId) {
         const u = USERS_CACHE.find((x) => x.id === editId);
         if (!u) return;
         modalTitle.textContent = 'Update User';
@@ -226,4 +253,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })();
   })();
+});
 
