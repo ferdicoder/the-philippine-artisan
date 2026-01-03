@@ -40,7 +40,7 @@ body {
 .events-title {
   font-size: 2.4rem;
   font-weight: 700;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 25px;
   color: var(--dark);
 }
@@ -81,7 +81,7 @@ body {
 
 /* Events Content */
 .event-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   padding: 12px 12px 8px;
   font-weight: 600;
@@ -141,7 +141,7 @@ body {
   font-size: 2.3rem;
   font-weight: 700;
   margin-bottom: 20px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .events-grid {

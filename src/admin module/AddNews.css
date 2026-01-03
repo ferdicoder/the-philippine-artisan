@@ -45,7 +45,7 @@ body {
 }
 
 .page-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   font-weight: 600;
   color: var(--dark);
@@ -88,7 +88,7 @@ body {
 }
 
 .card h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -259,7 +259,7 @@ input[type="file"]:hover {
 }
 
 .preview h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--dark);
   margin: 1rem 0;
   font-size: 1.25rem;

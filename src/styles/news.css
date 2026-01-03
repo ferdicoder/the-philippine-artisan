@@ -40,7 +40,7 @@ body {
 }
 
 .news-title {
-  font-family: "Playfair Display";
+  font-family: 'Roboto', sans-serif;
   font-size: 2.2rem;
   margin-bottom: .5rem;
 }

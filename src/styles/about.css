@@ -45,7 +45,7 @@ body {
 }
 
 .intro h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 3rem;
   font-weight: 600;
   color: var(--primary);
