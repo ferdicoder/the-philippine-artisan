@@ -146,6 +146,16 @@ class User {
                 if (isset($data['password']) && !empty($data['password'])) {
                     $users[$index]['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 }
+                // Profile fields
+                if (isset($data['bio'])) {
+                    $users[$index]['bio'] = $data['bio'];
+                }
+                if (isset($data['department'])) {
+                    $users[$index]['department'] = $data['department'];
+                }
+                if (isset($data['last_login'])) {
+                    $users[$index]['last_login'] = $data['last_login'];
+                }
                 
                 $users[$index]['updatedAt'] = date('Y-m-d H:i:s');
                 self::saveAll($users);

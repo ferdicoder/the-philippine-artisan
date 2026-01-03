@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Load admin profile data
-    loadAdminProfile();
+    // Load admin profile data from API
+    loadAdminProfileFromAPI();
 
     // Setup form handlers
     setupProfileForm();
@@ -52,6 +52,38 @@ function getAdminData() {
         }
     }
     return null;
+}
+
+/**
+ * Load admin profile data from API
+ */
+async function loadAdminProfileFromAPI() {
+    const token = localStorage.getItem('token');
+    
+    try {
+        const response = await fetch(`${API_URL}/users/profile.php`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.user) {
+            // Update localStorage with fresh data
+            localStorage.setItem('user', JSON.stringify(data.user));
+            loadAdminProfile();
+        } else {
+            // Fallback to localStorage data
+            loadAdminProfile();
+        }
+    } catch (error) {
+        console.error('Failed to fetch profile from API:', error);
+        // Fallback to localStorage data
+        loadAdminProfile();
+    }
 }
 
 /**
@@ -94,9 +126,10 @@ function updateAdminStats(admin) {
     document.getElementById('totalArticles').textContent = admin.articlesCount || 0;
     document.getElementById('totalUsers').textContent = admin.usersManaged || 0;
     
-    // Format admin since date
-    if (admin.created_at) {
-        const date = new Date(admin.created_at);
+    // Format admin since date - check both createdAt and created_at
+    const createdDate = admin.createdAt || admin.created_at;
+    if (createdDate) {
+        const date = new Date(createdDate);
         const options = { year: 'numeric', month: 'short' };
         document.getElementById('adminSince').textContent = date.toLocaleDateString('en-US', options);
     } else {
@@ -145,14 +178,37 @@ function setupProfileForm() {
     const form = document.getElementById('adminProfileForm');
     const cancelBtn = document.getElementById('cancelProfileEdit');
     const editBtn = document.getElementById('editProfileBtn');
+    const formActions = form.querySelector('.form-actions');
+
+    // Initially hide form actions
+    formActions.style.display = 'none';
 
     // Toggle edit mode
     editBtn.addEventListener('click', function() {
         const inputs = form.querySelectorAll('input, textarea');
+        const isCurrentlyDisabled = inputs[0].disabled;
+        
         inputs.forEach(input => {
-            input.disabled = !input.disabled;
+            input.disabled = !isCurrentlyDisabled;
         });
-        editBtn.textContent = inputs[0].disabled ? 'Edit' : 'Cancel Edit';
+        
+        if (isCurrentlyDisabled) {
+            // Entering edit mode
+            editBtn.textContent = 'Cancel Edit';
+            editBtn.style.background = '#dc3545';
+            editBtn.style.color = 'white';
+            editBtn.style.borderColor = '#dc3545';
+            formActions.style.display = 'flex';
+        } else {
+            // Exiting edit mode
+            editBtn.textContent = 'Edit';
+            editBtn.style.background = 'transparent';
+            editBtn.style.color = '#243978';
+            editBtn.style.borderColor = '#243978';
+            formActions.style.display = 'none';
+            // Reset form to original values
+            loadAdminProfile();
+        }
     });
 
     form.addEventListener('submit', async function(e) {
@@ -174,11 +230,16 @@ function setupProfileForm() {
             return;
         }
 
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Saving...';
+        submitBtn.disabled = true;
+
         try {
             const token = localStorage.getItem('token');
-            const admin = getAdminData();
             
-            const response = await fetch(`${API_URL}/users/user.php?id=${admin.id}`, {
+            const response = await fetch(`${API_URL}/users/profile.php`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -190,9 +251,19 @@ function setupProfileForm() {
             const data = await response.json();
 
             if (data.success) {
-                // Update local storage
-                const updatedAdmin = { ...admin, name, email, bio, department };
-                localStorage.setItem('user', JSON.stringify(updatedAdmin));
+                // Update local storage with new data
+                localStorage.setItem('user', JSON.stringify(data.user));
+                
+                // Reset edit button state
+                editBtn.textContent = 'Edit';
+                editBtn.style.background = 'transparent';
+                editBtn.style.color = '#243978';
+                editBtn.style.borderColor = '#243978';
+                formActions.style.display = 'none';
+                
+                // Disable inputs
+                const inputs = form.querySelectorAll('input, textarea');
+                inputs.forEach(input => input.disabled = true);
                 
                 // Reload profile display
                 loadAdminProfile();
@@ -202,19 +273,27 @@ function setupProfileForm() {
             }
         } catch (error) {
             console.error('Profile update error:', error);
-            
-            // For demo purposes, update locally if API fails
-            const admin = getAdminData();
-            const updatedAdmin = { ...admin, name, email, bio, department };
-            localStorage.setItem('user', JSON.stringify(updatedAdmin));
-            loadAdminProfile();
-            showAlert('Profile updated locally!', 'success');
+            showAlert('Network error. Please try again.', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 
     cancelBtn.addEventListener('click', function() {
         // Reset form to original values
         loadAdminProfile();
+        
+        // Reset edit button state
+        editBtn.textContent = 'Edit';
+        editBtn.style.background = 'transparent';
+        editBtn.style.color = '#243978';
+        editBtn.style.borderColor = '#243978';
+        formActions.style.display = 'none';
+        
+        // Disable inputs
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach(input => input.disabled = true);
     });
 }
 
@@ -247,11 +326,16 @@ function setupPasswordForm() {
             return;
         }
 
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Updating...';
+        submitBtn.disabled = true;
+
         try {
             const token = localStorage.getItem('token');
-            const admin = getAdminData();
 
-            const response = await fetch(`${API_URL}/users/user.php?id=${admin.id}`, {
+            const response = await fetch(`${API_URL}/users/profile.php`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -274,6 +358,9 @@ function setupPasswordForm() {
         } catch (error) {
             console.error('Password update error:', error);
             showAlert('Network error. Please try again.', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 }
