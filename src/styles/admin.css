@@ -368,9 +368,116 @@ margin-left: 8px;
 
 /* Container */
 .admin-container { 
-  max-width: 1200px; 
+  max-width: 1400px; 
   margin: 2rem auto; 
-  padding: 0 1.5rem; 
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+}
+
+/* Dashboard Main Content */
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Profile Sidebar Styles */
+.profile-sidebar {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.admin-avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+}
+
+.admin-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+}
+
+.admin-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: var(--primary);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.profile-sidebar h2 {
+  text-align: center;
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+
+.admin-email {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Profile Navigation */
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: var(--bg);
+  color: var(--primary);
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+}
+
+.nav-item.logout-btn {
+  margin-top: 20px;
+  color: var(--danger);
+}
+
+.nav-item.logout-btn:hover {
+  background: #fff5f5;
+  color: var(--danger);
 }
 
 /* Stats Grid */
@@ -684,6 +791,14 @@ margin-left: 8px;
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .admin-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-sidebar {
+    position: static;
+  }
+  
   .stats-grid {
     gap: 1rem;
   }

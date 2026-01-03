@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel | The Philippine Artisan</title>
+  <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/admin.css" />
   <link rel="icon" href="../assets/artisan-logo.png">
 </head>
@@ -20,13 +21,41 @@
   </header>
 
   <main class="admin-container">
-    <section class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-top">
-          <h3>Total Users</h3>
-        </div>
-        <p id="statTotal" class="stat-value">0</p>
+    <!-- Sidebar Navigation -->
+    <aside class="profile-sidebar">
+      <div class="admin-avatar">
+        <img src="../assets/default-avatar.png" alt="Admin Avatar" id="adminAvatar" 
+          onerror="this.src='https://ui-avatars.com/api/?name=Admin&background=243978&color=fff&size=150'">
+        <span class="admin-badge">Admin</span>
       </div>
+      <h2 id="sidebarAdminName">Admin Name</h2>
+      <p class="admin-email" id="sidebarAdminEmail">admin@email.com</p>
+      
+      <nav class="profile-nav">
+        <a href="Admin.html" class="nav-item active">
+          Dashboard
+        </a>
+        <a href="admin-profile.html" class="nav-item">
+          My Profile
+        </a>
+        <a href="admin module/AddNews.html" class="nav-item">
+          Publish News
+        </a>
+        <button class="nav-item logout-btn" id="sidebarLogout">
+          Logout
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="dashboard-main">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <h3>Total Users</h3>
+          </div>
+          <p id="statTotal" class="stat-value">0</p>
+        </div>
       <div class="stat-card">
         <div class="stat-top">
           <h3>Admin Count</h3>
@@ -100,6 +129,7 @@
           </div>
         </form>
       </div>
+    </div>
     </div>
   </main>
 

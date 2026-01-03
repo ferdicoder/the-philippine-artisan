@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const el = (id) => document.getElementById(id);
     const logoutBtn = el('logoutBtn');
+    const sidebarLogout = el('sidebarLogout');
     const currentUserEl = el('currentUser');
+    const sidebarAdminName = el('sidebarAdminName');
+    const sidebarAdminEmail = el('sidebarAdminEmail');
+    const adminAvatar = el('adminAvatar');
     const statTotal = el('statTotal');
     const statAdmins = el('statAdmins');
     const recentUsers = el('recentUsers');
@@ -72,7 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!res.ok) throw new Error('Failed to fetch current user');
       const data = await res.json();
       const me = data.data.user;
-      currentUserEl.textContent = `${me.name} (${me.role})`;
+      if (currentUserEl) currentUserEl.textContent = `${me.name} (${me.role})`;
+      
+      // Populate sidebar admin info
+      if (sidebarAdminName) sidebarAdminName.textContent = me.name;
+      if (sidebarAdminEmail) sidebarAdminEmail.textContent = me.email;
+      if (adminAvatar) {
+        adminAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(me.name)}&background=243978&color=fff&size=150`;
+      }
+      
       if (me.role !== 'Admin') {
         alert('Admins only.');
         window.location.href = 'index.html';
@@ -177,6 +189,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Events
     logoutBtn?.addEventListener('click', () => {
+      localStorage.removeItem('token');
+      window.location.href = 'SignIn.html';
+    });
+    sidebarLogout?.addEventListener('click', () => {
       localStorage.removeItem('token');
       window.location.href = 'SignIn.html';
     });
