@@ -58,10 +58,15 @@ function handleGet(string $id): void {
  * Handle PUT request - update article
  */
 function handlePut(string $id): void {
-    // Require authentication
+    // Require admin role - only admins can update news
     $user = Auth::check();
     if (!$user) {
         Response::error('Unauthorized', 401);
+    }
+    
+    // Check if user is admin
+    if (!isset($user['role']) || strtolower($user['role']) !== 'admin') {
+        Response::error('Forbidden: Only administrators can edit news', 403);
     }
     
     // Check if article exists
@@ -90,10 +95,15 @@ function handlePut(string $id): void {
  * Handle DELETE request - delete article
  */
 function handleDelete(string $id): void {
-    // Require authentication
+    // Require admin role - only admins can delete news
     $user = Auth::check();
     if (!$user) {
         Response::error('Unauthorized', 401);
+    }
+    
+    // Check if user is admin
+    if (!isset($user['role']) || strtolower($user['role']) !== 'admin') {
+        Response::error('Forbidden: Only administrators can delete news', 403);
     }
     
     // Check if article exists

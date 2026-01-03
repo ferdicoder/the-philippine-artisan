@@ -60,10 +60,15 @@ function handleGet(): void {
  * Handle POST request - create new article
  */
 function handlePost(): void {
-    // Require authentication
+    // Require admin role - only admins can publish news
     $user = Auth::check();
     if (!$user) {
         Response::error('Unauthorized', 401);
+    }
+    
+    // Check if user is admin
+    if (!isset($user['role']) || strtolower($user['role']) !== 'admin') {
+        Response::error('Forbidden: Only administrators can publish news', 403);
     }
     
     // Get JSON input

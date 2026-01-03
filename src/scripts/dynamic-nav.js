@@ -2,9 +2,11 @@
  * Dynamic Navigation Handler
  * Updates navigation links based on user authentication status and role
  * 
- * For logged-in users: Replaces "More" with "User Profile" and "Publish News"
+ * For logged-in users: Replaces "More" with "User Profile"
  * For logged-in admins: Replaces "More" with "Dashboard", "Admin Profile", and "Publish News"
  * For logged-out users: Shows default navigation with "More"
+ * 
+ * Note: Only admin users can publish news
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -153,6 +155,7 @@ function createAdminNavItems(basePath, srcPath) {
 
 /**
  * Create navigation items for regular users
+ * Note: Publish News removed - only admins can publish news
  */
 function createUserNavItems(basePath, srcPath) {
     const fragment = document.createDocumentFragment();
@@ -164,14 +167,6 @@ function createUserNavItems(basePath, srcPath) {
     profileLink.textContent = 'User Profile';
     profileLi.appendChild(profileLink);
     fragment.appendChild(profileLi);
-    
-    // Publish News link
-    const publishLi = document.createElement('li');
-    const publishLink = document.createElement('a');
-    publishLink.href = srcPath + 'admin module/AddNews.html';
-    publishLink.textContent = 'Publish News';
-    publishLi.appendChild(publishLink);
-    fragment.appendChild(publishLi);
     
     return fragment;
 }

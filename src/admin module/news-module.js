@@ -2,6 +2,8 @@
  * News Module - Backend Connected Version
  * Publishes articles to PHP backend API
  * Articles will automatically appear on headlines page
+ * 
+ * Note: Only admin users can access this page
  */
 
 // API Configuration - Use relative path from admin module folder
@@ -15,8 +17,62 @@ let articles = [];
 let currentEditId = null;
 let currentImageData = null;
 
+/**
+ * Display inline alert message (used before main showAlert is available)
+ */
+function displayAccessAlert(message, type) {
+  const alertContainer = document.getElementById('alertContainer');
+  if (alertContainer) {
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.innerHTML = `<span>${message}</span>`;
+    alertContainer.appendChild(alert);
+  } else {
+    alert(message);
+  }
+}
+
+/**
+ * Check if current user is an admin
+ */
+function checkAdminAccess() {
+  const token = localStorage.getItem('token');
+  const userData = localStorage.getItem('user');
+  
+  if (!token || !userData) {
+    displayAccessAlert('You must be logged in to access this page. Redirecting to sign in...', 'danger');
+    setTimeout(() => {
+      window.location.href = '../SignIn.html';
+    }, 2000);
+    return false;
+  }
+  
+  try {
+    const user = JSON.parse(userData);
+    if (!user.role || user.role.toLowerCase() !== 'admin') {
+      displayAccessAlert('Access denied. Only administrators can publish news. Redirecting to home...', 'danger');
+      setTimeout(() => {
+        window.location.href = '../../index.html';
+      }, 2000);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    displayAccessAlert('Invalid user session. Redirecting to sign in...', 'danger');
+    setTimeout(() => {
+      window.location.href = '../SignIn.html';
+    }, 2000);
+    return false;
+  }
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  
+  // Check admin access first
+  if (!checkAdminAccess()) {
+    return; // Stop initialization if not admin
+  }
   
   // Initialize
   setDefaultDateTime();
