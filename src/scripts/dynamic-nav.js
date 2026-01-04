@@ -180,14 +180,6 @@ function updateNavigation() {
 function createAdminNavItems(basePath, srcPath) {
     const fragment = document.createDocumentFragment();
     
-    // Dashboard link
-    const dashboardLi = document.createElement('li');
-    const dashboardLink = document.createElement('a');
-    dashboardLink.href = srcPath + 'Admin.html';
-    dashboardLink.textContent = 'Dashboard';
-    dashboardLi.appendChild(dashboardLink);
-    fragment.appendChild(dashboardLi);
-    
     // Admin Profile link
     const profileLi = document.createElement('li');
     const profileLink = document.createElement('a');
