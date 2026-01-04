@@ -9,16 +9,33 @@ The objective of this website is to provide another level of accessibility to Th
 - **Jhanleur Balberan** – Designer
 - **Nicholai Santos** – Content Writer
 ## Tools Used
-- HTML, CSS, JavaScript, PHP
+- HTML, CSS, JavaScript and JSON, PHP
 - Visual Studio Code
 - Git & GitHub
 - GitHub Pages
 ## Site Structure
 - `index.html` – Homepage
-- `about.html` – Company profile
-- `headlines` – contain headlines and brief news
-  - `news.html` – detailed information about the news
+- `about.html` – Organization profile
+- `headlines.html` – News headlines overview
+- `events.html` – Events page
+- `test-profile.php` – Test user profile (PHP)
+- `user-profile.html` – User profile page
+- `nav-links.js` – Navigation links script
 - `assets/` – Images and icons
+- `src/` – Main source folder
+  - HTML pages (admin, articles, news, sign in/up, etc.)
+  - `admin module/` – Admin-specific modules (AddNews, etc.)
+  - `php/` – Backend PHP code
+    - `config.php`, `email.php`
+    - `api/` – API endpoints
+      - `admin/`, `articles/`, `auth/`, `users/` (modular PHP endpoints)
+    - `data/` – JSON data files (articles, users)
+    - `helpers/` – Helper PHP classes (JWT, Response)
+    - `middleware/` – Middleware (Auth)
+    - `models/` – Data models (Article, User)
+  - `scripts/` – JavaScript modules (admin, articles, nav, etc.)
+  - `styles/` – CSS stylesheets (per page/module)
+- `vendor/` – Composer dependencies (autoload, PHPMailer, etc.)
 ## Design Concept
 - **Color Scheme**: Blue and White represents original color of The Philippine Artisan
 - **Typography**:
@@ -29,13 +46,17 @@ The objective of this website is to provide another level of accessibility to Th
 - GitHub Repository: https://github.com/ferdicoder/the-philippine-artisan.git
 - Live Site: https://ferdicoder.github.io/the-philippine-artisan/
 ## Lessons Learned
-- Improved collaboration using Git
-- Learned how to deploy static sites via GitHub Pages
+- Improved collaboration using Git and GitHub
+- Learned how to deploy static and dynamic sites via GitHub Pages and XAMPP
 - Practiced responsive design and semantic HTML
-- Learned Fllex and Grid display propery in CSS
-- Concept of at-rules in CSS and its usage
-- Applied DOM HTML generation for website interactivity
-- Used JavaScript built-in functions
+- Mastered Flex and Grid display property in CSS
+- Understood the concept and usage of at-rules in CSS
+- Applied DOM manipulation and dynamic HTML generation for interactivity
+- Utilized JavaScript built-in functions and modular scripts
+- Integrated PHP for backend API and authentication
+- Managed JSON data for articles and users
+- Implemented modular folder structure for scalability
+- Used Composer and PHPMailer for backend email functionality
 
 ## Timeline
 | Phase | Task | Date |
