@@ -9,10 +9,62 @@
  * Note: Only admin users can publish news
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+// API URL for verifying user role
+const NAV_API_URL = getApiUrl();
+
+function getApiUrl() {
+    const path = window.location.pathname;
+    if (path.includes('/admin module/') || path.includes('/admin%20module/')) {
+        return '../../php/api';
+    }
+    if (path.includes('/src/')) {
+        return 'php/api';
+    }
+    return 'src/php/api';
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    // First, verify user role from server to ensure localStorage is in sync
+    if (isLoggedIn()) {
+        await verifyUserRole();
+    }
     updateNavigation();
     updateHeaderActions();
 });
+
+/**
+ * Verify user role from server and update localStorage
+ * This ensures the navigation reflects the actual user role from the database
+ */
+async function verifyUserRole() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    
+    try {
+        const response = await fetch(`${NAV_API_URL}/auth/me.php`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success && data.data && data.data.user) {
+                // Update localStorage with fresh user data from server
+                localStorage.setItem('user', JSON.stringify(data.data.user));
+            }
+        } else if (response.status === 401) {
+            // Token is invalid, clear auth data
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+        }
+    } catch (error) {
+        console.error('Failed to verify user role:', error);
+        // Continue with cached data on network error
+    }
+}
 
 /**
  * Check if user is logged in
@@ -110,12 +162,14 @@ function updateNavigation() {
                     const adminNav = createAdminNavItems(basePath, srcPath);
                     item.parentNode.replaceChild(adminNav, item);
                 } else {
-                    // Regular user navigation: User Profile, Publish News
+                    // Regular user navigation: User Profile
                     const userNav = createUserNavItems(basePath, srcPath);
                     item.parentNode.replaceChild(userNav, item);
                 }
+            } else {
+                // If not logged in, remove the "More" link to limit access
+                item.remove();
             }
-            // If not logged in, keep the default "More" link
         }
     });
 }

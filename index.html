@@ -176,17 +176,30 @@
 <script src="src/scripts/dynamic-nav.js"></script>
 <script src="nav-links.js"></script>
 <script src="src/scripts/headlines.js"></script>
+<script src="src/scripts/AlertSubscription.js"></script>
 <script>
   // Prevent double form submission
-  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-    const btn = document.getElementById('subscribe-btn');
-    if (btn.disabled) {
-      e.preventDefault();
-      return false;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-  });
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      // Check if user is logged in
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      if (!token || !user) {
+        e.preventDefault();
+        alert("Please log in or create an account to subscribe to our newsletter.");
+        return false;
+      }
+      
+      const btn = document.getElementById('subscribe-btn');
+      if (btn.disabled) {
+        e.preventDefault();
+        return false;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+    });
+  }
 </script>
 </body>
 </html>

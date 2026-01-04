@@ -75,6 +75,15 @@ async function loadAdminProfileFromAPI() {
         if (data.success && data.user) {
             // Update localStorage with fresh data
             localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Re-verify admin status with fresh data
+            // If user is no longer an admin, redirect them
+            if (!data.user.role || data.user.role.toLowerCase() !== 'admin') {
+                alert('Your admin privileges have been revoked. Redirecting to home page.');
+                window.location.href = '../index.html';
+                return;
+            }
+            
             loadAdminProfile();
         } else {
             // Fallback to localStorage data
