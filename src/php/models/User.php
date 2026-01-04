@@ -147,9 +147,6 @@ class User {
                     $users[$index]['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 }
                 // Profile fields
-                if (isset($data['bio'])) {
-                    $users[$index]['bio'] = $data['bio'];
-                }
                 if (isset($data['department'])) {
                     $users[$index]['department'] = $data['department'];
                 }

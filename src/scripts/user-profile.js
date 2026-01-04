@@ -53,6 +53,8 @@ async function loadUserProfile() {
     // First, try to fetch fresh data from the server
     try {
         const token = localStorage.getItem('token');
+        console.log('Fetching profile from:', PROFILE_ENDPOINT);
+        
         const response = await fetch(PROFILE_ENDPOINT, {
             method: 'GET',
             headers: {
@@ -60,11 +62,13 @@ async function loadUserProfile() {
             }
         });
 
+        console.log('Profile fetch response status:', response.status);
         const data = await response.json();
+        console.log('Profile data received:', data);
 
-        if (data.success && data.user) {
+        if (data.success && data.data?.user) {
             // Update localStorage with fresh server data
-            const serverUser = data.user;
+            const serverUser = data.data.user;
             localStorage.setItem('user', JSON.stringify(serverUser));
             displayUserProfile(serverUser);
             return;
@@ -104,7 +108,6 @@ function displayUserProfile(user) {
     document.getElementById('editName').value = user.name || '';
     document.getElementById('editEmail').value = user.email || '';
     document.getElementById('editOrganization').value = user.organization || '';
-    document.getElementById('editBio').value = user.bio || '';
 
     // Update activity stats
     updateActivityStats(user);
@@ -153,7 +156,6 @@ function setupProfileForm() {
         const name = document.getElementById('editName').value.trim();
         const email = document.getElementById('editEmail').value.trim();
         const organization = document.getElementById('editOrganization').value.trim();
-        const bio = document.getElementById('editBio').value.trim();
 
         if (!name || !email) {
             showAlert('Name and email are required.', 'error');
@@ -170,20 +172,26 @@ function setupProfileForm() {
             const token = localStorage.getItem('token');
             const user = getUserData();
             
+            console.log('Sending profile update:', { name, email, organization });
+            console.log('Token:', token ? 'Present' : 'Missing');
+            
             const response = await fetch(PROFILE_ENDPOINT, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ name, email, organization, bio })
+                body: JSON.stringify({ name, email, organization })
             });
 
+            console.log('Response status:', response.status);
             const data = await response.json();
+            console.log('Response data:', data);
 
             if (data.success) {
-                // Update local storage with server response
-                const updatedUser = data.user ? { ...user, ...data.user } : { ...user, name, email, organization, bio };
+                // Update local storage with server response (data is nested under data.data)
+                const serverUser = data.data?.user;
+                const updatedUser = serverUser ? { ...user, ...serverUser } : { ...user, name, email, organization };
                 localStorage.setItem('user', JSON.stringify(updatedUser));
                 
                 // Reload profile display

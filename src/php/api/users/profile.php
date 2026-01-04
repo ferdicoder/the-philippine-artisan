@@ -75,8 +75,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 Response::error('Name cannot be empty', 400);
             }
             
-            // Sanitize bio
-            $bio = isset($input['bio']) ? htmlspecialchars(trim($input['bio']), ENT_QUOTES, 'UTF-8') : null;
+            // Sanitize fields
             $department = isset($input['department']) ? htmlspecialchars(trim($input['department']), ENT_QUOTES, 'UTF-8') : null;
             $organization = isset($input['organization']) ? htmlspecialchars(trim($input['organization']), ENT_QUOTES, 'UTF-8') : null;
             
@@ -88,9 +87,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
                 if (isset($input['email'])) {
                     $updateData['email'] = trim($input['email']);
-                }
-                if ($bio !== null) {
-                    $updateData['bio'] = $bio;
                 }
                 if ($department !== null) {
                     $updateData['department'] = $department;
