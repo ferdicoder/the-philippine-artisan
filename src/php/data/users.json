@@ -34,5 +34,14 @@
         "password": "$2y$10$EIf0hJ9GatH5Y\/wLkiNTH.z8Vlri97.iaGFq7DNYRca\/rI9\/2WM1W",
         "role": "User",
         "createdAt": "2026-01-04 14:30:38"
+    },
+    {
+        "id": "05d08c012ca90538ed05194c41c7c653",
+        "name": "Ferd Ced",
+        "email": "ferdinandcedrick.gelito@tup.edu.ph",
+        "organization": "Philippine Artisan",
+        "password": "$2y$10$JEkvI7zvG6c0RMDzNRQBc.JKWPSzpmxzBb8tWrhhMJVe4IPFHrnAK",
+        "role": "User",
+        "createdAt": "2026-01-04 14:54:26"
     }
 ]
