@@ -3,11 +3,11 @@
         "id": "7ce5104a80f914e1bff8ae4f2010842b",
         "name": "Administrator",
         "email": "admin@example.com",
-        "password": "$2y$10$HxoqsLkZ8JhRX3gUrO1b2OSdgR28zfCS8W9LaoVeMw07YOG6Lfs6O",
+        "password": "$2y$10$vGZdoR7t11HaONiuEeUktOLR13dwX2KLkLbiM0IZYM6g8z8qXh3p.",
         "role": "Admin",
         "createdAt": "2026-01-03 18:11:38",
         "department": "",
-        "updatedAt": "2026-01-04 18:32:55"
+        "updatedAt": "2026-01-04 23:19:46"
     },
     {
         "id": "4f6a3bdb0b305e495a8e2967c23577f2",
@@ -19,16 +19,6 @@
         "updatedAt": "2026-01-04 01:12:08"
     },
     {
-        "id": "5c5e4c06b3bdb98257f99919d0e0a59d",
-        "name": "Ferdinand Gelito",
-        "email": "cedrickced820@gmail.com",
-        "organization": "GDG",
-        "password": "$2y$10$kHM1t0KimQy4BAafeKoPjOFLFRtcFgyBUvi9IqcXN6qFiffzLeICS",
-        "role": "User",
-        "createdAt": "2026-01-03 20:01:03",
-        "updatedAt": "2026-01-04 14:49:50"
-    },
-    {
         "id": "471423483ac857f3ff449cae1412fc78",
         "name": "Ced",
         "email": "ferdinandgelito071620@gmail.com",
@@ -38,12 +28,12 @@
         "createdAt": "2026-01-04 14:30:38"
     },
     {
-        "id": "05d08c012ca90538ed05194c41c7c653",
-        "name": "Ferd Ced",
-        "email": "ferdinandcedrick.gelito@tup.edu.ph",
+        "id": "1986876e556b6bc700362008cb169384",
+        "name": "Ferdinand Gelito",
+        "email": "cedrickced820@gmail.com",
         "organization": "Philippine Artisan",
-        "password": "$2y$10$JEkvI7zvG6c0RMDzNRQBc.JKWPSzpmxzBb8tWrhhMJVe4IPFHrnAK",
+        "password": "$2y$10$YUhZUgNennRXZYbMxoD7T.PtvtCVTiZ1alUAGdsIUU5NgYGc1Z3Oq",
         "role": "User",
-        "createdAt": "2026-01-04 14:54:26"
+        "createdAt": "2026-01-04 23:22:12"
     }
 ]
