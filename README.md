@@ -4,7 +4,7 @@ The Philippine Artisan is a student organization in Technological University of 
 ## Purpose
 The objective of this website is to provide another level of accessibility to The Philippines Artisan and to centralized an information in web environment equal to the big news organization in the country.
 ## Team Members & Roles
-- **Ferdinand Cedrick B. Gelito** – Developer 
+- **Ferdinand Cedrick B. Gelito** – Full-Stack Developer 
 - **Jewel Sarvida** – Project Manager
 - **Jhanleur Balberan** – Designer
 - **Nicholai Santos** – Content Writer
@@ -37,11 +37,13 @@ The objective of this website is to provide another level of accessibility to Th
   - `styles/` – CSS stylesheets (per page/module)
 - `vendor/` – Composer dependencies (autoload, PHPMailer, etc.)
 ## Design Concept
-- **Color Scheme**: Blue and White represents original color of The Philippine Artisan
+- **Color Scheme**: Blue (#003366) and White (#FFFFFF) reflect the official colors of The Philippine Artisan, used for backgrounds, headers, and accents.
 - **Typography**:
-  - Roboto - For standardized readability
-  - Pirata One - For title text
-- **Layout**: Consistent spacing, mobile-friendly grid
+  - Roboto – Used for body text and general readability.
+  - Pirata One – Used for titles, headers, and branding elements.
+- **Layout**: Consistent spacing, mobile-friendly grid system, and use of Flexbox and CSS Grid for responsive design.
+- **Imagery & Icons**: Custom icons and images stored in the assets folder, supporting visual storytelling.
+- **Accessibility**: Semantic HTML and ARIA attributes for improved accessibility.
 ## Deployment
 - GitHub Repository: https://github.com/ferdicoder/the-philippine-artisan.git
 - Live Site: https://ferdicoder.github.io/the-philippine-artisan/
