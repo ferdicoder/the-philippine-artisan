@@ -93,6 +93,7 @@ function displayUserProfile(user) {
     document.getElementById('userName').textContent = user.name || 'User';
     document.getElementById('userRole').textContent = user.role || 'User';
     document.getElementById('userEmail').textContent = user.email || '';
+    document.getElementById('userOrganization').textContent = user.organization || '';
 
     // Update avatar with initials
     const avatarImg = document.getElementById('userAvatar');
@@ -102,6 +103,7 @@ function displayUserProfile(user) {
     // Populate edit form
     document.getElementById('editName').value = user.name || '';
     document.getElementById('editEmail').value = user.email || '';
+    document.getElementById('editOrganization').value = user.organization || '';
     document.getElementById('editBio').value = user.bio || '';
 
     // Update activity stats
@@ -127,9 +129,10 @@ function updateActivityStats(user) {
     // These would normally come from the API
     document.getElementById('articlesCount').textContent = user.articlesCount || 0;
     
-    // Format member since date
-    if (user.created_at) {
-        const date = new Date(user.created_at);
+    // Format member since date (check both created_at and createdAt)
+    const memberDate = user.created_at || user.createdAt;
+    if (memberDate) {
+        const date = new Date(memberDate);
         const options = { year: 'numeric', month: 'short' };
         document.getElementById('memberSince').textContent = date.toLocaleDateString('en-US', options);
     } else {
@@ -149,6 +152,7 @@ function setupProfileForm() {
 
         const name = document.getElementById('editName').value.trim();
         const email = document.getElementById('editEmail').value.trim();
+        const organization = document.getElementById('editOrganization').value.trim();
         const bio = document.getElementById('editBio').value.trim();
 
         if (!name || !email) {
@@ -172,14 +176,14 @@ function setupProfileForm() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ name, email, bio })
+                body: JSON.stringify({ name, email, organization, bio })
             });
 
             const data = await response.json();
 
             if (data.success) {
                 // Update local storage with server response
-                const updatedUser = data.user ? { ...user, ...data.user } : { ...user, name, email, bio };
+                const updatedUser = data.user ? { ...user, ...data.user } : { ...user, name, email, organization, bio };
                 localStorage.setItem('user', JSON.stringify(updatedUser));
                 
                 // Reload profile display

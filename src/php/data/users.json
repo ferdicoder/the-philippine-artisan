@@ -25,5 +25,14 @@
         "role": "User",
         "createdAt": "2026-01-03 20:01:03",
         "updatedAt": "2026-01-04 14:15:02"
+    },
+    {
+        "id": "471423483ac857f3ff449cae1412fc78",
+        "name": "Ced",
+        "email": "ferdinandgelito071620@gmail.com",
+        "organization": "Philippine Artisan",
+        "password": "$2y$10$EIf0hJ9GatH5Y\/wLkiNTH.z8Vlri97.iaGFq7DNYRca\/rI9\/2WM1W",
+        "role": "User",
+        "createdAt": "2026-01-04 14:30:38"
     }
 ]

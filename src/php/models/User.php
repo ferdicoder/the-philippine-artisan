@@ -153,6 +153,9 @@ class User {
                 if (isset($data['department'])) {
                     $users[$index]['department'] = $data['department'];
                 }
+                if (isset($data['organization'])) {
+                    $users[$index]['organization'] = $data['organization'];
+                }
                 if (isset($data['last_login'])) {
                     $users[$index]['last_login'] = $data['last_login'];
                 }

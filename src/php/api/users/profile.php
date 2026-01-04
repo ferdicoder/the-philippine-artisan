@@ -78,6 +78,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             // Sanitize bio
             $bio = isset($input['bio']) ? htmlspecialchars(trim($input['bio']), ENT_QUOTES, 'UTF-8') : null;
             $department = isset($input['department']) ? htmlspecialchars(trim($input['department']), ENT_QUOTES, 'UTF-8') : null;
+            $organization = isset($input['organization']) ? htmlspecialchars(trim($input['organization']), ENT_QUOTES, 'UTF-8') : null;
             
             try {
                 $updateData = [];
@@ -93,6 +94,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
                 if ($department !== null) {
                     $updateData['department'] = $department;
+                }
+                if ($organization !== null) {
+                    $updateData['organization'] = $organization;
                 }
                 
                 $user = User::update($currentUser['id'], $updateData);

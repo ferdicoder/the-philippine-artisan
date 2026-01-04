@@ -92,6 +92,17 @@ body {
   opacity: 0.9;
 }
 
+.user-organization {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.user-organization:empty {
+  display: none;
+}
+
 /* Profile Details */
 .profile-details,
 .profile-section {
