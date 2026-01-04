@@ -103,17 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       if (data.success) {
-        // Save token and user to localStorage
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-
-        // Show success message
-        showAlert('Account created successfully! Redirecting...', 'success');
-
-        // Redirect to home page after 2 seconds
-        setTimeout(() => {
-          window.location.href = '../index.html';
-        }, 2000);
+        // Show success message and redirect to landing page
+        alert('Account created successfully! Please sign in to continue.');
+        window.location.href = '../index.html';
       } else {
         // Show error message from server
         showAlert(data.message || 'Sign up failed. Please try again.', 'error');
