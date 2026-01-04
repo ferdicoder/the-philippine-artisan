@@ -37,7 +37,7 @@
     
     
     $mail->Username = "cedrickced820@gmail.com";
-    $mail->Password = "abcjsrbtmsztdkio"; 
+    $mail->Password = "sgbowbguejjwgzcv"; 
 
     $mail->setFrom("cedrickced820@gmail.com", "The Philippine Artisan");
     $mail->addAddress($email);
