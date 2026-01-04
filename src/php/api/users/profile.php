@@ -107,6 +107,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
             }
         }
         break;
+    
+    case 'DELETE':
+        // Delete own account
+        try {
+            if (!User::delete($currentUser['id'])) {
+                Response::error('Failed to delete account', 500);
+            }
+            
+            Response::success(null, 'Account deleted successfully');
+            
+        } catch (Exception $e) {
+            Response::error($e->getMessage(), 400);
+        }
+        break;
         
     default:
         Response::error('Method not allowed', 405);

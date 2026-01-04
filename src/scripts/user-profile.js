@@ -5,6 +5,7 @@
 
 // Use relative path - user-profile.html is at root level, API is at /src/php/api
 const API_URL = 'src/php/api';
+const PROFILE_ENDPOINT = `${API_URL}/users/profile.php`;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in
@@ -48,13 +49,45 @@ function getUserData() {
 /**
  * Load user profile data into the page
  */
-function loadUserProfile() {
+async function loadUserProfile() {
+    // First, try to fetch fresh data from the server
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(PROFILE_ENDPOINT, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.user) {
+            // Update localStorage with fresh server data
+            const serverUser = data.user;
+            localStorage.setItem('user', JSON.stringify(serverUser));
+            displayUserProfile(serverUser);
+            return;
+        }
+    } catch (error) {
+        console.log('Could not fetch profile from server, using local data:', error);
+    }
+
+    // Fallback to localStorage data
     const user = getUserData();
     
     if (!user) {
         showAlert('Failed to load user data.', 'error');
         return;
     }
+
+    displayUserProfile(user);
+}
+
+/**
+ * Display user profile data on the page
+ */
+function displayUserProfile(user) {
 
     // Update profile header
     document.getElementById('userName').textContent = user.name || 'User';
@@ -93,7 +126,6 @@ function getInitials(name) {
 function updateActivityStats(user) {
     // These would normally come from the API
     document.getElementById('articlesCount').textContent = user.articlesCount || 0;
-    document.getElementById('commentsCount').textContent = user.commentsCount || 0;
     
     // Format member since date
     if (user.created_at) {
@@ -134,7 +166,7 @@ function setupProfileForm() {
             const token = localStorage.getItem('token');
             const user = getUserData();
             
-            const response = await fetch(`${API_URL}/users/user.php?id=${user.id}`, {
+            const response = await fetch(PROFILE_ENDPOINT, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -146,8 +178,8 @@ function setupProfileForm() {
             const data = await response.json();
 
             if (data.success) {
-                // Update local storage
-                const updatedUser = { ...user, name, email, bio };
+                // Update local storage with server response
+                const updatedUser = data.user ? { ...user, ...data.user } : { ...user, name, email, bio };
                 localStorage.setItem('user', JSON.stringify(updatedUser));
                 
                 // Reload profile display
@@ -158,13 +190,7 @@ function setupProfileForm() {
             }
         } catch (error) {
             console.error('Profile update error:', error);
-            
-            // For demo purposes, update locally if API fails
-            const user = getUserData();
-            const updatedUser = { ...user, name, email, bio };
-            localStorage.setItem('user', JSON.stringify(updatedUser));
-            loadUserProfile();
-            showAlert('Profile updated locally!', 'success');
+            showAlert('Network error. Please check your connection and try again.', 'error');
         }
     });
 
@@ -205,9 +231,8 @@ function setupPasswordForm() {
 
         try {
             const token = localStorage.getItem('token');
-            const user = getUserData();
 
-            const response = await fetch(`${API_URL}/users/user.php?id=${user.id}`, {
+            const response = await fetch(PROFILE_ENDPOINT, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -255,9 +280,8 @@ function setupDeleteAccount() {
 
         try {
             const token = localStorage.getItem('token');
-            const user = getUserData();
 
-            const response = await fetch(`${API_URL}/users/user.php?id=${user.id}`, {
+            const response = await fetch(PROFILE_ENDPOINT, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
