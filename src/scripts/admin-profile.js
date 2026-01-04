@@ -34,7 +34,9 @@ function isAdminLoggedIn() {
     
     try {
         const userData = JSON.parse(user);
-        return userData.role && userData.role.toLowerCase() === 'admin';
+        // Check for both 'role' and 'user_type' properties
+        const role = userData.role || userData.user_type;
+        return role && role.toLowerCase() === 'admin';
     } catch (e) {
         return false;
     }
@@ -71,19 +73,20 @@ async function loadAdminProfileFromAPI() {
         });
 
         const data = await response.json();
-
         if (data.success && data.user) {
-            // Update localStorage with fresh data
-            localStorage.setItem('user', JSON.stringify(data.user));
-            
+            // Ensure the user object has a valid admin role property
+            let userObj = data.user;
+            if (!userObj.role && userObj.user_type) {
+                userObj.role = userObj.user_type;
+            }
+            localStorage.setItem('user', JSON.stringify(userObj));
             // Re-verify admin status with fresh data
-            // If user is no longer an admin, redirect them
-            if (!data.user.role || data.user.role.toLowerCase() !== 'admin') {
+            const role = userObj.role || userObj.user_type;
+            if (!role || role.toLowerCase() !== 'admin') {
                 alert('Your admin privileges have been revoked. Redirecting to home page.');
                 window.location.href = '../index.html';
                 return;
             }
-            
             loadAdminProfile();
         } else {
             // Fallback to localStorage data
@@ -261,20 +264,24 @@ function setupProfileForm() {
             const data = await response.json();
 
             if (data.success) {
-                // Update local storage with new data
-                localStorage.setItem('user', JSON.stringify(data.user));
-                
+                // Ensure the user object has a valid admin role property
+                let userObj = data.user;
+                if (!userObj.role && userObj.user_type) {
+                    userObj.role = userObj.user_type;
+                }
+                localStorage.setItem('user', JSON.stringify(userObj));
+
                 // Reset edit button state
                 editBtn.textContent = 'Edit';
                 editBtn.style.background = 'transparent';
                 editBtn.style.color = '#243978';
                 editBtn.style.borderColor = '#243978';
                 formActions.style.display = 'none';
-                
+
                 // Disable inputs
                 const inputs = form.querySelectorAll('input, textarea');
                 inputs.forEach(input => input.disabled = true);
-                
+
                 // Reload profile display
                 loadAdminProfile();
                 showAlert('Profile updated successfully!', 'success');
